@@ -5,6 +5,6 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
-	'myAppName' => 'Моё приложение',
+	'myAppName' => '"Выпуск 81"',
 	'language' => 'ru-Ru',
 ];

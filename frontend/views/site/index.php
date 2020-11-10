@@ -2,7 +2,6 @@
 
 /* @var $this yii\web\View */
 
-//$this->title = 'My Yii Application';
 $this->title = Yii::$app->params['myAppName'];
 ?>
 <div class="site-index">
@@ -17,36 +16,37 @@ $this->title = Yii::$app->params['myAppName'];
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Момент 1</h2>
+			<div class="col-lg-6">
+				<h2>Момент 1</h2>
+				<p>Группа в приложении WatsApp создана для сбора и хранения контактной информации.</p>
+				<p>Основная цель создания - помочь в поиске друзей юности.</p>
+				<p>Очень не приветствуется использование этой группы для всяческого спама, которым забит и-нет.</p>
+				<p>Потому что этот сайт и создаётся именно для того, чтобы можно было на нём:</p>
+				<ul>
+					<li>узнавать то, что другие однокашники хотят о себе сообщить</li>
+					<li>вспоминать со товарищи дни минувшие</li>
+					<li>делится с желающими тем, чем хочется поделиться</li>
+					<li>обсуждать с кем угодно и что угодно (цензуру вводить не планируется)</li>
+					<li>разумеется, планируется и создание фотогалереи</li>
+				</ul>
+				<p>и т.п., всё то, что сами напридумываем...</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+				<!--                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>-->
+			</div>
+            <div class="col-lg-6">
+                <h2>Момент 2</h2>
+				<p>Данный сайт создан исключительно для определённой группы лиц, а именно - тех, кто учились в СШ №11 г.Новокузнецка Кемеровской области.</p>
+				<p>Ядро группы составляют выпускники 1981 года. Но приветствуются и все те, кто учился с нами в разные периоды.</p>
+				<p>Содержимое сайта доступно только для зарегистрированных пользователей.</p>
+				<p>Регистрация производится администрацией сайта на основе контактной информации из существующей группы в WatsApp.</p>
 
 <!--                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>-->
             </div>
-            <div class="col-lg-4">
-                <h2>Момент 2</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
+<!--            <div class="col-lg-4">-->
+<!--                <h2>Момент 2</h2>-->
+<!---->
 <!--                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>-->
-            </div>
-            <div class="col-lg-4">
-                <h2>Момент 3</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-<!--                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>-->
-            </div>
+<!--            </div>-->
         </div>
 
     </div>
