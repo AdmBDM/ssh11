@@ -20,6 +20,7 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $mobile
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -28,13 +29,13 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
-
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return mb_strtolower(Fields::TAB_USER);
+//        return '{{%user}}';
     }
 
     /**
@@ -46,6 +47,13 @@ class User extends ActiveRecord implements IdentityInterface
             TimestampBehavior::className(),
         ];
     }
+
+	/**
+	 * @return array|false|string[]
+	 */
+	public function attributeLabels() {
+    	return Fields::getAttributes(Fields::TAB_USER);
+	}
 
     /**
      * {@inheritdoc}
