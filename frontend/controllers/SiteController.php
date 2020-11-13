@@ -1,8 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
+//use alexeevdv\sms\ru\Sms;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -10,10 +9,12 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
+use frontend\models\ResendVerificationEmailForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use frontend\models\VerifyEmailForm;
 
 /**
  * Site controller
@@ -27,7 +28,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
@@ -43,7 +44,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -88,7 +89,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+		$model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -109,7 +110,8 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+//        return $this->goHome();
+		return $this->render('index');
     }
 
     /**
@@ -171,19 +173,33 @@ class SiteController extends Controller
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
 
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
-            }
-        }
+		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+	// отправка на почту
+			if (Yii::$app->params['checkPassword'] == CHECK_FROM_EMAIL) {
+				if ($model->sendEmail()) {
+					Yii::$app->session->setFlash('success', 'Проверьте вашу почту для получения инструкций.');
+
+					return $this->goHome();
+				} else {
+					Yii::$app->session->setFlash('error', 'Извините, невозможно отправить подтверждение по указанному адресу.');
+				}
+			} else {
+
+	// отправка на телефон
+				$user = $model->sendSms();
+				$form = new ResetPasswordForm();
+				$form->phone_number = $user->phone_number;
+				return $this->render('resetPassword', [
+					'model' => $form,
+				]);
+			}
+		}
 
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
         ]);
+
     }
 
     /**
@@ -203,7 +219,6 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->session->setFlash('success', 'Новый пароль сохранён.');
-//            Yii::$app->session->setFlash('success', 'New password saved.');
 
             return $this->goHome();
         }
@@ -258,4 +273,47 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+	/**
+	 * Requests password reset.
+	 *
+	 * @return mixed
+	 */
+	public function actionPasswordReset()
+	{
+		$model = new PasswordResetRequestForm();
+		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+			$user = $model->sendSms();
+			$form = new ResetPasswordForm();
+			$form->phone_number = $user->phone_number;
+			return $this->render('resetPassword', [
+				'model' => $form
+			]);
+		}
+
+		return $this->render('requestPasswordResetToken', [
+			'model' => $model,
+		]);
+	}
+
+	/**
+	 * Resets password.
+	 *
+	 * @param string $token
+	 * @return mixed
+	 * @throws BadRequestHttpException
+	 */
+	public function actionPasswordResetSms()
+	{
+		if (!Yii::$app->request->isPost) return $this->goHome();
+		$model = new ResetPasswordForm();
+
+		if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+			return $this->render('successPasswordChange');
+		}
+
+		return $this->render('resetPassword', [
+			'model' => $model,
+		]);
+	}
 }

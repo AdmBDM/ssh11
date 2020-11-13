@@ -10,14 +10,17 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property string $path
  * @property integer $section_id
- * @property string $template_id
  * @property string $icon
  * @property integer $has_menu
  * @property string $title
+ * @property string $published
+ * @property string $sort
+ * @property string $main
  *
  * @property Section $section
  * @property Section[] $sections
  */
+
 class Section extends ActiveRecord
 {
     /**

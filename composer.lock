@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50114089d7de41b6fbcc4d646295169a",
+    "content-hash": "7c83a28315fb9d2b512aa9340cf496e2",
     "packages": [
+        {
+            "name": "alexeevdv/yii2-sms-ru",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexeevdv/yii2-sms-ru.git",
+                "reference": "c89414eb39fba8c4ba350ed939c0314f43baa530"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexeevdv/yii2-sms-ru/zipball/c89414eb39fba8c4ba350ed939c0314f43baa530",
+                "reference": "c89414eb39fba8c4ba350ed939c0314f43baa530",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "alexeevdv\\sms\\ru\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "alexeevdv",
+                    "email": "mail@alexeevdv.ru",
+                    "homepage": "https://alexeevdv.ru/"
+                }
+            ],
+            "description": "Yii2 wrapper for sms.ru API",
+            "keywords": [
+                "api",
+                "sms",
+                "sms.ru",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/alexeevdv/yii2-sms-ru/issues",
+                "source": "https://github.com/alexeevdv/yii2-sms-ru"
+            },
+            "time": "2017-11-28T14:27:16+00:00"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.4.1",
@@ -4119,12 +4167,14 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "alexeevdv/yii2-sms-ru": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.6.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

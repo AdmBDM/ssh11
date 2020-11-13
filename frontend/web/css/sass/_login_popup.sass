@@ -1,0 +1,94 @@
+.popup-container 
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 10000
+	overflow-x: hidden
+	overflow-y: auto
+	background: rgba(35, 35, 35, 0.45)
+	display: none
+	cursor: pointer
+
+.login-popup-open .popup-container 
+	display: block
+
+.login-popup 
+	display: none
+	position: relative
+	width: auto
+	max-width: 500px
+	top: 20%
+	left: 0
+	right: 0
+	margin: 0 auto
+	background: #fff
+	padding: 20px 20px 20px
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+	overflow: hidden
+	cursor: initial
+
+.login-popup-open .login-popup 
+	display: block
+
+.login-popup-open 
+	overflow-y: scroll
+	position: fixed
+	width: 100%
+
+.login-popup-close 
+	position: absolute
+	font-size: 40px
+	top: 5px
+	right: 15px
+	line-height: 1
+	cursor: pointer
+
+.login-popup .nav 
+	margin: 0
+	width: 100%
+
+.login-popup .nav li 
+	width: 30%
+	text-align: center
+
+.login-popup .tab-pane 
+	padding-top: 20px
+
+.login-popup .form-control 
+	border-radius: 0
+	padding: 1px 10px 3px 15px
+	font-style: normal
+	border-color: #cecece
+	font-size: 18px
+	color: #4c4c4c
+
+.popup-background
+	position: absolute
+	top: 0
+	bottom: 0
+	left: 0
+	right: 0
+	z-index: 9999
+	background: rgba(35, 35, 35, 0.45)
+	display: none
+	cursor: pointer
+
+.login-popup-open .popup-background 
+	display: block
+
+.login-popup .form-control 
+	margin: 0
+
+.btn-login 
+	background-color: #359b47
+	color: #fff
+	font-weight: bold
+	margin: 0 !important
+	float: right
+	border: none
+
+.btn-login:focus, .btn-login:hover
+	background-color: #359b47
+	color: #fff

@@ -8,7 +8,8 @@ class Fields
 	const TAB_USER = 'User';
 	const TAB_SECTION = 'Section';
 	const FORM_LOGIN = 'Login';
-	const FORM_RESET_PASS = 'Reset_Pass';
+	const FORM_RESET_PASS_E = 'Reset_Pass_email';
+	const FORM_RESET_PASS_M = 'Reset_Pass_mobile';
 
 	/**
 	 * @param $objName
@@ -28,7 +29,7 @@ class Fields
 				'created_at' => 'Создан',
 				'updated_at' => 'Изменён',
 				'verification_token' => 'Токен проверки',
-				'mobile' => 'Мобильный',
+				'phone_number' => 'Мобильный',
 			];
 		}
 
@@ -49,30 +50,84 @@ class Fields
 		if ($objName == self::FORM_LOGIN) {
 			return [
 				'username' => 'Имя пользователя',
+				'email' => 'Эл.почта',
+				'phone_number' => 'Мобильный',
 				'password' => 'Пароль',
 				'rememberMe' => 'Запомнить меня',
 			];
 		}
 
-		if ($objName == self::FORM_RESET_PASS) {
+		if ($objName == self::FORM_RESET_PASS_E) {
 			return [
+				'email' => 'Эл.почта',
+				'phone_number' => 'Номер телефона',
+			];
+		}
+
+		if ($objName == self::FORM_RESET_PASS_M) {
+			return [
+				'phone_number' => 'Номер телефона',
 				'email' => 'Эл.почта',
 			];
 		}
 
+		// возвращаем, если объект не описан
 		return false;
 	}
 
+	/**
+	 * @param $objName
+	 *
+	 * @return array[]|false
+	 */
 	static public function getRules($objName) {
 		if ($objName == self::TAB_SECTION) {
 			return [
 				[['section_id', 'has_menu'], 'integer'],
 				[['path', 'template_id', 'icon', 'title'], 'string', 'max' => 255],
 				[['section_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['section_id' => 'id']],
-				[['template_id'], 'exist', 'skipOnError' => true, 'targetClass' => Template::className(), 'targetAttribute' => ['template_id' => 'id']],
 			];
 		}
 
+		if ($objName == self::FORM_LOGIN) {
+			return [
+//				// username and password are both required
+//				[['username', 'password'], 'required'],
+				// phone_number and password are both required
+				[['phone_number', 'password'], 'required'],
+				// rememberMe must be a boolean value
+				['rememberMe', 'boolean'],
+				// password is validated by validatePassword()
+				['password', 'validatePassword'],
+			];
+		}
+
+		if ($objName == self::FORM_RESET_PASS_E) {
+			return [
+				['email', 'trim'],
+				['email', 'required'],
+				['email', 'email'],
+				['email', 'exist',
+					'targetClass' => '\common\models\User',
+					'filter' => ['status' => User::STATUS_ACTIVE],
+					'message' => 'Нет пользователя с таким адресом.'
+				],
+			];
+		}
+
+		if ($objName == self::FORM_RESET_PASS_M) {
+			return [
+				['phone_number', 'trim'],
+				['phone_number', 'required'],
+//				['phone_number', 'exist',
+//					'targetClass' => '\common\models\User',
+//					'filter' => ['status' => User::STATUS_ACTIVE],
+//					'message' => 'Нет пользователя с таким адресом.'
+//				],
+			];
+		}
+
+		// возвращаем, если объект не описан
 		return false;
 	}
 }

@@ -2,6 +2,7 @@
 namespace common\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -20,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $mobile
+ * @property string $phone_number
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -44,7 +45,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -74,9 +75,10 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+	/**
+	 * {@inheritdoc}
+	 * @throws NotSupportedException
+	 */
     public static function findIdentityByAccessToken($token, $type = null)
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
@@ -123,6 +125,32 @@ class User extends ActiveRecord implements IdentityInterface
             'status' => self::STATUS_INACTIVE
         ]);
     }
+
+	/**
+	 * Finds user by email
+	 *
+	 * @param string $email
+	 * @return static|null
+	 */
+	public static function findByEmail($email)
+	{
+		return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+	}
+
+	/**
+	 * Finds user by phone
+	 *
+	 * @param string $phone_number
+	 * @return static|null
+	 */
+	public static function findByPhone($phone_number)
+	{
+		$phone_number = str_replace(' ', '', str_replace('(', '', str_replace(')', '', str_replace('-', '', $phone_number))));
+//		$phone_number = clearPhone($phone_number);
+
+//		return static::findOne(['phone_number' => $phone_number, 'status' => self::STATUS_ACTIVE]);
+		return static::findOne(['phone_number' => $phone_number]);
+	}
 
     /**
      * Finds out if password reset token is valid
@@ -176,19 +204,23 @@ class User extends ActiveRecord implements IdentityInterface
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
+	/**
+	 * Generates password hash from password and sets it to the model
+	 *
+	 * @param string $password
+	 *
+	 * @throws Exception
+	 */
     public function setPassword($password)
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
-    /**
-     * Generates "remember me" authentication key
-     */
+	/**
+	 * Generates "remember me" authentication key
+	 *
+	 * @throws Exception
+	 */
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
@@ -199,12 +231,15 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
+//        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+		$this->password_reset_token = rand(10000, 99999);
+	}
 
-    /**
-     * Generates new token for email verification
-     */
+	/**
+	 * Generates new token for email verification
+	 *
+	 * @throws Exception
+	 */
     public function generateEmailVerificationToken()
     {
         $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();

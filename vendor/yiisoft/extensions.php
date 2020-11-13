@@ -48,4 +48,13 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
+  'alexeevdv/yii2-sms-ru' => 
+  array (
+    'name' => 'alexeevdv/yii2-sms-ru',
+    'version' => 'dev-master',
+    'alias' => 
+    array (
+      '@alexeevdv/sms/ru' => $vendorDir . '/alexeevdv/yii2-sms-ru',
+    ),
+  ),
 );
