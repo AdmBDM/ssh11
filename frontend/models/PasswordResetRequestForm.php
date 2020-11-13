@@ -52,13 +52,9 @@ class PasswordResetRequestForm extends Model
             'email' => $this->email,
         ]);
 
-//		$_SERVER['_my_test'][] = ['user' => $user->email];
-
 		if (!$user) {
             return false;
         }
-
-//		$_SERVER['_my_test'][] = ['reset_token' => $user->password_reset_token];
 
 		if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
@@ -100,8 +96,6 @@ class PasswordResetRequestForm extends Model
 			"to" => $user->phone_number,
 			"text" => "Ваш код для восстановления пароля : " . $user->password_reset_token,
 		]));
-
-//		$_SERVER['_my_test'][] = ['phone_number' => $this->phone_number,];
 
 		return $user;
 	}

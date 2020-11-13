@@ -1,8 +1,8 @@
 <?php
-/* @var $this \yii\web\View */
-/* @var $model common\models\Declarant */
+/* @var $this View */
 
 use yii\bootstrap\Html;
+use yii\web\View;
 use yii\widgets\ActiveFormAsset;
 
 $this->title = '';

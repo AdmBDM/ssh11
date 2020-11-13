@@ -31,18 +31,16 @@ class LoginForm extends Model
 		return Fields::getAttributes(Fields::FORM_LOGIN);
 	}
 
-    /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
-     *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
-     */
-    public function validatePassword($attribute, $params)
+	/**
+	 * Validates the password.
+	 * This method serves as the inline validation for password.
+	 *
+	 * @param string $attribute the attribute currently being validated
+	 */
+    public function validatePassword($attribute)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-//			$_SERVER['_my_test_'] = ['pswd' => $this->password, 'mob'];
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Некорректное имя пользователя или пароль.');
             }

@@ -85,7 +85,7 @@ class Fields
 			return [
 				[['section_id', 'has_menu'], 'integer'],
 				[['path', 'template_id', 'icon', 'title'], 'string', 'max' => 255],
-				[['section_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['section_id' => 'id']],
+				[['section_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::class, 'targetAttribute' => ['section_id' => 'id']],
 			];
 		}
 
@@ -117,13 +117,13 @@ class Fields
 
 		if ($objName == self::FORM_RESET_PASS_M) {
 			return [
-				['phone_number', 'trim'],
-				['phone_number', 'required'],
-//				['phone_number', 'exist',
-//					'targetClass' => '\common\models\User',
-//					'filter' => ['status' => User::STATUS_ACTIVE],
-//					'message' => 'Нет пользователя с таким адресом.'
-//				],
+				[['phone_number', 'trim',], 'match', 'pattern' => '/^\+[0-9]+$/u', 'message' => 'Вводятся только "+" и цифры, без пробелов, скобок и пр.',],
+				[['phone_number', 'required',], 'string', 'min' => 11,],
+				['phone_number', 'exist',
+					'targetClass' => '\common\models\User',
+					'filter' => ['status' => User::STATUS_ACTIVE],
+					'message' => 'Нет пользователя с таким номером.'
+				],
 			];
 		}
 

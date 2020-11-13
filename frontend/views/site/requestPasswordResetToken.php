@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				if (Yii::$app->params['checkPassword'] == CHECK_FROM_EMAIL) {
 					echo $form->field($model, 'email')->textInput(['autofocus' => true]);
 				} else {
-					echo $form->field($model, 'phone_number')->textInput(['autofocus' => true, 'placeholder' => '+<код страны>1234567890', 'mask' => '+79999999999',])->label('Следует вводить только знак "+" и цифры, без пробелов, дефисов и подчёкиваний');
+					echo $form->field($model, 'phone_number')->textInput(['autofocus' => true, 'placeholder' => '+<код страны>12345678901', 'mask' => '+79999999999',]);
 				}
 			?>
 

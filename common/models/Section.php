@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -52,23 +53,23 @@ class Section extends ActiveRecord
 //     */
 //    public function getPage()
 //    {
-//        return $this->hasOne(Page::className(), ['section_id' => 'id', 'route' => 'path']);
+//        return $this->hasOne(Page::class, ['section_id' => 'id', 'route' => 'path']);
 //    }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getSection()
     {
-        return $this->hasOne(Section::className(), ['id' => 'section_id']);
+        return $this->hasOne(Section::class, ['id' => 'section_id']);
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getSections()
     {
-        return $this->hasMany(Section::className(), ['section_id' => 'id']);
+        return $this->hasMany(Section::class, ['section_id' => 'id']);
     }
 
 //    /**
@@ -76,6 +77,6 @@ class Section extends ActiveRecord
 //     */
 //    public function getTemplate()
 //    {
-//        return $this->hasOne(Template::className(), ['id' => 'template_id']);
+//        return $this->hasOne(Template::class, ['id' => 'template_id']);
 //    }
 }

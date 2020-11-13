@@ -40,11 +40,20 @@ if (!isset($this->params['header_color'])) $this->params['header_color'] = 'blac
 
 <div class="navbar">
 <?
-	NavBar::begin();
-	echo Nav::widget([
-		'options' => ['class' => 'navbar-nav navbar-right'],
-		'items' => $menuItems,
+	NavBar::begin([
+		'brandLabel' => Yii::$app->name,
+		'brandUrl' => Yii::$app->homeUrl,
+		'options' => [
+			'class' => 'navbar-inverse navbar-fixed-top',
+		],
 	]);
+	try {
+		echo Nav::widget([
+			'options' => ['class' => 'navbar-nav navbar-right'],
+			'items' => $menuItems,
+		]);
+	} catch (Exception $e) {
+	}
 	NavBar::end();
 ?>
 </div>

@@ -18,7 +18,7 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-#/vendor
+/vendor
 
 # composer itself is not needed
 composer.phar
@@ -33,6 +33,7 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
+/vagrant
 
 # ignore generated files
 #/frontend/web/index.php
