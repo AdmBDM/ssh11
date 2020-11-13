@@ -94,7 +94,8 @@ class PasswordResetRequestForm extends Model
 		if (!$user->save()) {
 			return false;
 		}
-		$response = Yii::$app->sms->send(new Sms([
+//		$response = Yii::$app->sms->send(new Sms([
+		Yii::$app->sms->send(new Sms([
 //			"to" => "+7" . $user->phone_number,
 			"to" => $user->phone_number,
 			"text" => "Ваш код для восстановления пароля : " . $user->password_reset_token,
