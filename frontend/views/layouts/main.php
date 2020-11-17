@@ -29,8 +29,9 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<?= $this->render('header')?>
 <div class="wrap">
-	<?= $this->render('header')?>
+<!--	--><?//= $this->render('header')?>
 
     <div class="container">
         <?= Breadcrumbs::widget([

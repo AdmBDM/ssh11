@@ -8,6 +8,7 @@ class Fields
 	const TAB_USER = 'User';
 	const TAB_SECTION = 'Section';
 	const FORM_LOGIN = 'Login';
+	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
 	const FORM_RESET_PASS_M = 'Reset_Pass_mobile';
 
@@ -57,6 +58,15 @@ class Fields
 			];
 		}
 
+		if ($objName == self::FORM_SIGNUP) {
+			return [
+				'username' => 'Имя пользователя',
+				'email' => 'Эл.почта',
+				'phone_number' => 'Мобильный',
+				'password' => 'Пароль',
+			];
+		}
+
 		if ($objName == self::FORM_RESET_PASS_E) {
 			return [
 				'email' => 'Эл.почта',
@@ -99,6 +109,28 @@ class Fields
 				['rememberMe', 'boolean'],
 				// password is validated by validatePassword()
 				['password', 'validatePassword'],
+			];
+		}
+
+		if ($objName == self::FORM_SIGNUP) {
+			return [
+				['username', 'trim'],
+				['username', 'required'],
+				['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Указанное имя уже используется.'],
+				['username', 'string', 'min' => 2, 'max' => 255],
+
+				['email', 'trim'],
+				['email', 'required'],
+				['email', 'email'],
+				['email', 'string', 'max' => 255],
+				['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Указанный адрес уже используется.'],
+
+				['password', 'required'],
+				['password', 'string', 'min' => 6],
+
+				['phone_number', 'trim',],
+				['phone_number', 'required',],
+				['phone_number', 'match', 'pattern' => '/^\+[0-9]+$/u', 'message' => 'Вводятся только "+" и цифры',],
 			];
 		}
 

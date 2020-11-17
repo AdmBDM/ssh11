@@ -124,9 +124,11 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+//                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', 'Спасибо за сообщение. Мы рассмотрим его максимально быстро.');
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+//                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', 'Ошибка при отправке сообщения.');
             }
 
             return $this->refresh();
@@ -156,7 +158,7 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success', 'Спасибо за регистрацию. Проверьте свою почту.');
             return $this->goHome();
         }
 
@@ -314,4 +316,13 @@ class SiteController extends Controller
 			'model' => $model,
 		]);
 	}
+
+	/**
+	 * @return string
+	 */
+	public function actionForWhat()
+	{
+		return $this->render('forWhat');
+	}
+
 }

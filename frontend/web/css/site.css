@@ -87,6 +87,16 @@ a.desc:after {
   padding: 10px 20px;
   margin: 0 0 15px 0; }
 
+.header-normal-width .container-boxed-width {
+  width: 100%;
+  padding: 0; }
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030; }
+
 .navbar {
   position: relative;
   min-height: 20px;
@@ -204,5 +214,10 @@ a.desc:after {
 .btn-login:focus, .btn-login:hover {
   background-color: #359b47;
   color: #fff; }
+
+.site-first img {
+  display: block;
+  max-width: 50%;
+  height: auto; }
 
 /*# sourceMappingURL=site.css.map */

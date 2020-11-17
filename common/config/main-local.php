@@ -16,7 +16,10 @@
 	define('CHECK_FROM_EMAIL', 'email', true);
 	define('CHECK_FROM_SMS', 'sms', true);
 
-		return [
+// почта админа
+	define('EMAIL_ADMIN', 'jim7kzn@gmail.com', true);
+
+	return [
     'components' => [
 		'db' => [
 			'class' => 'yii\db\Connection',

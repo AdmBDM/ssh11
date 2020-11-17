@@ -25,7 +25,8 @@ if (!isset($this->params['header_color'])) $this->params['header_color'] = 'blac
 	}
 
 	if (Yii::$app->user->isGuest) {
-		$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+//		$menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
+		$menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
 	} else {
 		$menuItems[] = '<li>'
 			. Html::beginForm(['/site/logout'], 'post')
@@ -38,26 +39,30 @@ if (!isset($this->params['header_color'])) $this->params['header_color'] = 'blac
 	}
 ?>
 
-<div class="navbar">
-<?
-	NavBar::begin([
-		'brandLabel' => Yii::$app->name,
-		'brandUrl' => Yii::$app->homeUrl,
-		'options' => [
-			'class' => 'navbar-inverse navbar-fixed-top',
-		],
-	]);
-	try {
-		echo Nav::widget([
-			'options' => ['class' => 'navbar-nav navbar-right'],
-			'items' => $menuItems,
-		]);
-	} catch (Exception $e) {
-	}
-	NavBar::end();
-?>
-</div>
+<header class="header header-topbar-hidden header-normal-width navbar-fixed-top header-background-trans header-color-<?= $this->params['header_color'] ?> header-logo-white header-navibox-1-left header-navibox-2-left header-navibox-3-right header-navibox-4-right">
 
+	<div class="container container-boxed-width">
+		<div class="navbar">
+			<?
+				NavBar::begin([
+					'brandLabel' => Yii::$app->name,
+					'brandUrl' => Yii::$app->homeUrl,
+					'options' => [
+						'class' => 'navbar-inverse navbar-fixed-top',
+					],
+				]);
+				try {
+					echo Nav::widget([
+						'options' => ['class' => 'navbar-nav navbar-right'],
+						'items' => $menuItems,
+					]);
+				} catch (Exception $e) {
+				}
+				NavBar::end();
+			?>
+		</div>
+	</div>
+</header>
 
 <!--   Далее - всё то, что можно будет удалить   -->
 <!--<div>
