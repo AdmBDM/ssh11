@@ -325,4 +325,7 @@ class SiteController extends Controller
 		return $this->render('forWhat');
 	}
 
+	public function actionHowLogin() {
+		return $this->render('howLogin');
+	}
 }

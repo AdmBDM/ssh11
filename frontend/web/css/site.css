@@ -220,4 +220,25 @@ a.desc:after {
   max-width: 50%;
   height: auto; }
 
+.site-how-login .instruction {
+  display: block;
+  width: 100%;
+  min-height: 200px;
+  padding: 5px;
+  font-size: large;
+  font-weight: bold; }
+  .site-how-login .instruction li {
+    font-style: italic;
+    margin-bottom: 10px; }
+  .site-how-login .instruction .col-left-text,
+  .site-how-login .instruction .col-right-text {
+    display: block;
+    width: 65%;
+    min-height: 150px; }
+  .site-how-login .instruction .col-left-img,
+  .site-how-login .instruction .col-right-img {
+    display: block;
+    width: 35%;
+    min-height: 150px; }
+
 /*# sourceMappingURL=site.css.map */
