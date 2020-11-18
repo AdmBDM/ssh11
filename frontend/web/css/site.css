@@ -16,9 +16,8 @@ body {
 .wrap > .container {
   padding: 70px 15px 20px; }
 
-.row h2 {
-  text-align: center;
-  color: darkgreen; }
+#mem2 {
+  font-weight: bold; }
 
 .row p, .row li {
   font-size: 110%;
@@ -35,6 +34,11 @@ body {
   padding-bottom: 5px;
   text-align: center;
   background-color: transparent; }
+  .jumbotron h2 {
+    font-style: italic; }
+  .jumbotron h3 {
+    text-align: center;
+    color: darkgreen; }
 
 .not-set {
   color: #c55;
@@ -226,7 +230,8 @@ a.desc:after {
   min-height: 200px;
   padding: 5px;
   font-size: large;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: justify; }
   .site-how-login .instruction li {
     font-style: italic;
     margin-bottom: 10px; }
