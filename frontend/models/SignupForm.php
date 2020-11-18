@@ -24,21 +24,6 @@ class SignupForm extends Model
     public function rules()
     {
     	return Fields::getRules(Fields::FORM_SIGNUP);
-//        return [
-//            ['username', 'trim'],
-//            ['username', 'required'],
-//            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-//            ['username', 'string', 'min' => 2, 'max' => 255],
-//
-//            ['email', 'trim'],
-//            ['email', 'required'],
-//            ['email', 'email'],
-//            ['email', 'string', 'max' => 255],
-//            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-//
-//            ['password', 'required'],
-//            ['password', 'string', 'min' => 6],
-//        ];
     }
 
 	/**
@@ -58,6 +43,11 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
+
+//	упрощённая регистрация
+//		$this->username = $this->phone_number;
+//		$this->email = $this->phone_number . '@freepost.ru';
+//		$this->password = '1234567';
         
         $user = new User();
         $user->username = $this->username;

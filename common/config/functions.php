@@ -6,9 +6,9 @@ function myDebug($arr, $die = false){
 }
 return [];
 
-//function clearPhone($mobile = '') {
-//	return str_replace(' ', '',
-//			str_replace('(', '',
-//				str_replace(')', '',
-//					str_replace('-', '', $mobile))));
-//}
+function clearPhone($mobile = '') {
+	return str_replace(' ', '',
+			str_replace('(', '',
+				str_replace(')', '',
+					str_replace('-', '', $mobile))));
+}
