@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '6f6214867f70d5cb4cdf7c73a74d2b6ee519e014',
+    'reference' => 'f6deb0131d6561c4aa109e0e56b55bcdcbc81e06',
     'name' => 'yiisoft/yii2-app-advanced',
   ),
   'versions' => 
@@ -33,6 +33,15 @@ private static $installed = array (
         0 => '9999999-dev',
       ),
       'reference' => 'c89414eb39fba8c4ba350ed939c0314f43baa530',
+    ),
+    'almasaeed2010/adminlte' => 
+    array (
+      'pretty_version' => 'v2.4.18',
+      'version' => '2.4.18.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e7ffa67a4649dc08d2018708a38604a6c0a02ab6',
     ),
     'behat/gherkin' => 
     array (
@@ -96,6 +105,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9bac5e971dd391e2802dca5400bbeacbaea9eb86',
+    ),
+    'cebe/yii2-gravatar' => 
+    array (
+      'pretty_version' => '1.1',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057',
     ),
     'codeception/codeception' => 
     array (
@@ -182,6 +200,15 @@ private static $installed = array (
       ),
       'reference' => 'fa0bb946b6d61279f461bcc5a677ac0ed5eab9b3',
     ),
+    'dmstr/yii2-adminlte-asset' => 
+    array (
+      'pretty_version' => '2.6.2',
+      'version' => '2.6.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c96336e1960ebc6c1e72487a7c6ca1a1589519fe',
+    ),
     'doctrine/instantiator' => 
     array (
       'pretty_version' => '1.0.5',
@@ -218,6 +245,15 @@ private static $installed = array (
       ),
       'reference' => 'a617e55bc62a87eec73bd456d146d134ad716f03',
     ),
+    'fortawesome/font-awesome' => 
+    array (
+      'pretty_version' => 'v4.7.0',
+      'version' => '4.7.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a8386aae19e200ddb0f6845b5feeee5eb7013687',
+    ),
     'fzaninotto/faker' => 
     array (
       'pretty_version' => 'v1.9.1',
@@ -244,6 +280,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e',
+    ),
+    'npm-asset/bootstrap' => 
+    array (
+      'pretty_version' => '4.5.3',
+      'version' => '4.5.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => NULL,
     ),
     'opis/closure' => 
     array (
@@ -420,6 +465,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+    ),
+    'rmrevin/yii2-fontawesome' => 
+    array (
+      'pretty_version' => '2.17.1',
+      'version' => '2.17.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '65ce306da864f4d558348aeba040ed7876878090',
     ),
     'sebastian/code-unit-reverse-lookup' => 
     array (
@@ -680,7 +734,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '6f6214867f70d5cb4cdf7c73a74d2b6ee519e014',
+      'reference' => 'f6deb0131d6561c4aa109e0e56b55bcdcbc81e06',
     ),
     'yiisoft/yii2-bootstrap' => 
     array (
@@ -690,6 +744,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '073c9ab0a4eb71f2485d84c96a1967130300d8fc',
+    ),
+    'yiisoft/yii2-bootstrap4' => 
+    array (
+      'pretty_version' => '2.0.9',
+      'version' => '2.0.9.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a75555e4a888508416fadfd0a2b94881342cdd45',
     ),
     'yiisoft/yii2-composer' => 
     array (
