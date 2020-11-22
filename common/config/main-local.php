@@ -1,16 +1,31 @@
 <?php
-return [
+
+//--- параметры подключения ---
+//  сервер БД - переменная DATA_CONNECT_HOST:
+//							= jim7.ru 	(значение для отладки)
+//  						= 127.0.0.1	(значение для работы)
+	if (strpos($_SERVER['CONTEXT_DOCUMENT_ROOT'], ':') === false) {
+		define('DATA_CONNECT_HOST', '127.0.0.1', true);
+		define('DEBUG_TOOL_ON', 'on', true);
+	} else {
+		define('DATA_CONNECT_HOST', 'jim7.ru', true);
+		define('DEBUG_TOOL_ON', 'off', true);
+	}
+
+// проверка при смене пароля:
+//			= email - через почту
+//			= sms   - через телефон
+	define('CHECK_FROM_EMAIL', 'email', true);
+	define('CHECK_FROM_SMS', 'sms', true);
+
+// почта админа
+	define('EMAIL_ADMIN', 'jim7kzn@gmail.com', true);
+
+	return [
     'components' => [
-//        'db' => [
-//            'class' => 'yii\db\Connection',
-//            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-//            'username' => 'root',
-//            'password' => '',
-//            'charset' => 'utf8',
-//        ],
 		'db' => [
 			'class' => 'yii\db\Connection',
-			'dsn' => 'pgsql:host=jim7.ru;port=5432;dbname=jim7',
+			'dsn' => 'pgsql:host=' . DATA_CONNECT_HOST . ';port=5432;dbname=jim7',
 			'username' => 'jim7',
 			'password' => 'Adm_BDM_jim7',
 			'charset' => 'utf8',

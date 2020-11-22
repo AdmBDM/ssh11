@@ -7,7 +7,8 @@ $this->title = Yii::$app->params['myAppName'];
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>СШ №11 г.Новокузнецка.</h1>
+        <h1>СШ №11 им.А.М.Горького</h1>
+        <h2>г.Новокузнецк</h2>
         <h3>Выпуск 1981 (и&nbsp;все-все-все)</h3>
 
 <!--        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>-->
@@ -16,8 +17,8 @@ $this->title = Yii::$app->params['myAppName'];
     <div class="body-content">
 
         <div class="row">
-			<div class="col-lg-6">
-				<h2>Момент 1</h2>
+			<div class="moment col-lg-6" id="mem1">
+				<h3>Момент 1</h3>
 				<p>Группа в приложении WatsApp создана для сбора и хранения контактной информации.</p>
 				<p>Основная цель создания - помочь в поиске друзей юности.</p>
 				<p>Очень не приветствуется использование этой группы для всяческого спама, которым забит и-нет.</p>
@@ -33,8 +34,8 @@ $this->title = Yii::$app->params['myAppName'];
 
 				<!--                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>-->
 			</div>
-            <div class="col-lg-6">
-                <h2>Момент 2</h2>
+            <div class="moment col-lg-6" id="mem2">
+                <h3>Момент 2</h3>
 				<p>Данный сайт создан исключительно для определённой группы лиц, а именно - тех, кто учились в СШ №11 г.Новокузнецка Кемеровской области.</p>
 				<p>Ядро группы составляют выпускники 1981 года. Но приветствуются и все те, кто учился с нами в разные периоды.</p>
 				<p>Содержимое сайта доступно только для зарегистрированных пользователей.</p>

@@ -19,10 +19,16 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
+//                    [
+//                        'actions' => ['index'],
+//                        'allow' => true,
+//						'roles' => ['@'],
+//                    ],
                     [
-                        'actions' => ['login', 'error'],
+//                        'actions' => ['login', 'error'],
+                        'actions' => ['error'],
                         'allow' => true,
                     ],
                     [
@@ -33,7 +39,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],

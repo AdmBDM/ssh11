@@ -5,3 +5,10 @@ function myDebug($arr, $die = false){
 	if ($die) die;
 }
 return [];
+
+function clearPhone($mobile = '') {
+	return str_replace(' ', '',
+			str_replace('(', '',
+				str_replace(')', '',
+					str_replace('-', '', $mobile))));
+}

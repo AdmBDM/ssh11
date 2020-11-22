@@ -1,0 +1,38 @@
+.header-normal-width .container-boxed-width
+	width: 100%
+	padding: 0
+
+.navbar-fixed-top, .navbar-fixed-bottom
+	position: fixed
+	right: 0
+	left: 0
+	z-index: 1030
+
+.navbar
+	position: relative
+	min-height: 20px
+	margin-bottom: 5px
+	border: 1px solid transparent
+
+
+// align the logout "link" (button in form) of the navbar
+.nav li > form > button.logout
+	padding: 15px
+	border: none
+
+
+@media(max-width: 767px)
+	.nav li > form > button.logout
+		display: block
+		text-align: left
+		width: 100%
+		padding: 10px 15px
+
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover
+	text-decoration: none
+
+
+.nav > li > form > button.logout:focus
+	outline: none

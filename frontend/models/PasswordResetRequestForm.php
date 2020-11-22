@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use alexeevdv\sms\ru\Sms;
 use common\models\Fields;
 use Yii;
 use yii\base\Model;
@@ -11,29 +12,31 @@ use common\models\User;
  */
 class PasswordResetRequestForm extends Model
 {
+    public $phone_number;
     public $email;
-
 
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
-        return [
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
-                'targetClass' => '\common\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'Нет пользователя с таким адресом.'
-            ],
-        ];
+    	if (Yii::$app->params['checkPassword'] == CHECK_FROM_EMAIL) {
+			return Fields::getRules(Fields::FORM_RESET_PASS_E);
+		} else {
+			return Fields::getRules(Fields::FORM_RESET_PASS_M);
+		}
     }
 
-	public function attributeLabels()
+	/**
+	 * @return array|false|string[]
+	 */
+    public function attributeLabels()
 	{
-		return Fields::getAttributes(Fields::FORM_RESET_PASS);
+		if (Yii::$app->params['checkPassword'] == CHECK_FROM_EMAIL) {
+			return Fields::getAttributes(Fields::FORM_RESET_PASS_E);
+		} else {
+			return Fields::getAttributes(Fields::FORM_RESET_PASS_M);
+		}
 	}
 
     /**
@@ -49,11 +52,11 @@ class PasswordResetRequestForm extends Model
             'email' => $this->email,
         ]);
 
-        if (!$user) {
+		if (!$user) {
             return false;
         }
-        
-        if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
+
+		if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
             if (!$user->save()) {
                 return false;
@@ -71,4 +74,31 @@ class PasswordResetRequestForm extends Model
             ->setSubject('Установлен пароль для ' . Yii::$app->name)
             ->send();
     }
+
+	/**
+	 * @return User|false
+	 */
+    public function sendSms() {
+		$user = User::findOne([
+//			'status' => User::STATUS_ACTIVE,
+			'phone_number' => $this->phone_number,
+		]);
+		if (!$user) {
+			return false;
+		}
+		$user->generatePasswordResetToken();
+		if (!$user->save()) {
+			return false;
+		}
+//		$response = Yii::$app->sms->send(new Sms([
+		Yii::$app->sms->send(new Sms([
+//			"to" => "+7" . $user->phone_number,
+			"to" => $user->phone_number,
+			"text" => "Ваш код для восстановления пароля : " . $user->password_reset_token,
+		]));
+
+		return $user;
+	}
+
 }
+
