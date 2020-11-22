@@ -227,10 +227,7 @@ a.desc:after {
 .site-first img {
   margin: 5px;
   display: block;
-  max-width: 45%;
-  height: auto; }
-.site-first frame {
-  max-width: 45%;
+  max-width: 50%;
   height: auto; }
 
 .site-how-login .instruction {
