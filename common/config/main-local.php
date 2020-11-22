@@ -6,8 +6,10 @@
 //  						= 127.0.0.1	(значение для работы)
 	if (strpos($_SERVER['CONTEXT_DOCUMENT_ROOT'], ':') === false) {
 		define('DATA_CONNECT_HOST', '127.0.0.1', true);
+		define('DEBUG_TOOL_ON', 'on', true);
 	} else {
 		define('DATA_CONNECT_HOST', 'jim7.ru', true);
+		define('DEBUG_TOOL_ON', 'off', true);
 	}
 
 // проверка при смене пароля:

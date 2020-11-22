@@ -29,10 +29,12 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
+//                'only' => ['logout', 'signup'],
+                'only' => ['login', 'logout'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+//                        'actions' => ['signup'],
+                        'actions' => ['login'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -329,4 +331,9 @@ class SiteController extends Controller
 	public function actionHowLogin() {
 		return $this->render('howLogin');
 	}
+
+	public function actionAdmin() {
+		return $this->render('howLogin');
+	}
+
 }

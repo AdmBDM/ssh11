@@ -21,8 +21,14 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 'rules' => [
+//                    [
+//                        'actions' => ['index'],
+//                        'allow' => true,
+//						'roles' => ['@'],
+//                    ],
                     [
-                        'actions' => ['login', 'error'],
+//                        'actions' => ['login', 'error'],
+                        'actions' => ['error'],
                         'allow' => true,
                     ],
                     [

@@ -10,6 +10,8 @@
 <div class="site-first">
 <h1><?= Html::encode($this->title) ?></h1>
 
+	<iframe src="https://www.youtube.com/embed/RpLnN1-SNYE" frameborder="0">test</iframe>
+
 	<img src='../../images/ssh11_1981_10а.jpg' alt='Foto' />
 
 	<?php
