@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 //use alexeevdv\sms\ru\Sms;
 use Yii;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -151,11 +152,12 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
+	/**
+	 * Signs user up.
+	 *
+	 * @return mixed
+	 * @throws Exception
+	 */
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -211,8 +213,9 @@ class SiteController extends Controller
      * Resets password.
      *
      * @param string $token
+     *
      * @return mixed
-     * @throws BadRequestHttpException
+     * @throws BadRequestHttpException|Exception
      */
     public function actionResetPassword($token)
     {
@@ -305,6 +308,7 @@ class SiteController extends Controller
 	 * Resets password.
 	 *
 	 * @return mixed
+	 * @throws Exception
 	 */
 	public function actionPasswordResetSms()
 	{
@@ -325,6 +329,8 @@ class SiteController extends Controller
 	 */
 	public function actionForWhat()
 	{
+		$this->layout = 'main_test';
+
 		return $this->render('forWhat');
 	}
 
