@@ -3,8 +3,8 @@
 
 	use yii\helpers\Html;
 
-	$this->title = 'Главная страница проекта';
-	$this->params['breadcrumbs'][] = $this->title;
+//	$this->title = 'Главная страница проекта';
+//	$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="site-first">
@@ -16,6 +16,7 @@
 
 	<p><?= 	Yii::$app->user->identity->username; ?></p>
 	<p><?= 	Yii::$app->user->identity->email; ?></p>
+	<p><?= 	Yii::$app->user->identity->admin; ?></p>
 
 	<?php
 		myDebug(Yii::$app->user->identity);

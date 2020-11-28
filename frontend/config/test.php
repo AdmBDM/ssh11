@@ -9,7 +9,8 @@ return [
             'showScriptName' => true,
         ],
         'request' => [
-            'cookieValidationKey' => 'test',
+//            'cookieValidationKey' => 'test',
+            'cookieValidationKey' => COMMON_COOKIE_VALIDATION_KEY,
         ],
     ],
 ];

@@ -8,9 +8,7 @@ body {
 
 .wrap {
   min-height: 100%;
-  height: auto;
   margin: 0 auto -60px;
-  padding: 0 0 60px;
   background: rgba(255, 255, 255, 0.6); }
 
 .wrap > .container {
@@ -102,10 +100,13 @@ a.desc:after {
   z-index: 1030; }
 
 .navbar {
+  background-color: #222D32;
   position: relative;
-  min-height: 20px;
-  margin-bottom: 5px;
-  border: 1px solid transparent; }
+  border-radius: 0;
+  min-height: 50px;
+  margin-bottom: 5px; }
+  .navbar button .navbar-toggle {
+    color: #333; }
 
 .nav li > form > button.logout {
   padding: 15px;
@@ -251,5 +252,28 @@ a.desc:after {
     display: block;
     width: 35%;
     min-height: 150px; }
+
+#outer {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px; }
+
+#sidebar {
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background: lightcoral;
+  border: blue solid 1px; }
+
+#top-expand {
+  width: 100%;
+  height: 100px;
+  background: lightgreen;
+  border: blue solid 1px; }
+
+#bottom-expand {
+  height: 100px;
+  background: #f00; }
 
 /*# sourceMappingURL=site.css.map */

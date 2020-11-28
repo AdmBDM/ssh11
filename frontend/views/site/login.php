@@ -10,6 +10,23 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+	$fieldOptionsName = [
+		'options' => ['class' => 'form-group has-feedback'],
+		'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
+	];
+
+	$fieldOptionsPassword = [
+		'options' => ['class' => 'form-group has-feedback'],
+		'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
+	];
+
+	$fieldOptionsMobile = [
+		'options' => ['class' => 'form-group has-feedback'],
+		'inputTemplate' => "{input}<span class='glyphicon glyphicon-phone form-control-feedback'></span>"
+	];
+
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -20,9 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-				<?= $form->field($model, 'phone_number')->textInput(['autofocus' => true, 'placeholder' => '+<код страны> 123 456 7890']) ?>
+				<?= $form
+					->field($model, 'phone_number', $fieldOptionsMobile)
+					->label(false)
+					->textInput(['autofocus' => true, 'placeholder' => '+<код страны> 123 456 7890']) ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form
+					->field($model, 'password', $fieldOptionsPassword)
+					->label(false)
+					->passwordInput() ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 

@@ -7,13 +7,12 @@ body
 
 .wrap
 	min-height: 100%
-	height: auto
-	margin: 0 auto -60px
-	padding: 0 0 60px
+	//height: auto
+	margin: 0 auto (-$footer_height)
 	background: rgba(255, 255, 255, .6)
 
 .wrap > .container
-	padding: 70px 15px 20px
+	padding: (20px + $header_height) 15px 20px
 
 #mem2
 	font-weight: bold
@@ -23,7 +22,7 @@ body
 	font-style: italic
 
 .footer
-	height: 60px
+	height: $footer_height
 	background-color: #f5f5f5
 	border-top: 1px solid #ddd
 	padding-top: 20px

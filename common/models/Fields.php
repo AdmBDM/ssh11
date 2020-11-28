@@ -31,6 +31,7 @@ class Fields
 				'updated_at' => 'Изменён',
 				'verification_token' => 'Токен проверки',
 				'phone_number' => 'Мобильный',
+				'admin' => 'Админ',
 			];
 		}
 

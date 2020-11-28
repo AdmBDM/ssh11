@@ -24,6 +24,14 @@ use yii\db\ActiveRecord;
 
 class Section extends ActiveRecord
 {
+	//определение локальных констант
+	const MENU_MAIN = 'main';
+	const MENU_HEAD = 'menu_head';
+	const MENU_LEFT = 'menu_left';
+	const MENU_RIGHT = 'menu_right';
+	const MENU_FOOTER = 'menu_footer';
+
+
     /**
      * @inheritdoc
      */
@@ -79,4 +87,16 @@ class Section extends ActiveRecord
 //    {
 //        return $this->hasOne(Template::class, ['id' => 'template_id']);
 //    }
+
+	/**
+	 * @param array $attributes
+	 */
+	public function getMenu($type, $conditions)
+	{
+		myDebug($conditions);
+
+		$menuItems = [];
+
+		return false;
+	}
 }

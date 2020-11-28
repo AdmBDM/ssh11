@@ -8,17 +8,17 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Sign In';
 
-$fieldOptions1 = [
+$fieldOptionsName = [
     'options' => ['class' => 'form-group has-feedback'],
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
 ];
 
-$fieldOptions2 = [
+$fieldOptionsPassword = [
     'options' => ['class' => 'form-group has-feedback'],
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
 ];
 
-$fieldOptions3 = [
+$fieldOptionsMobile = [
     'options' => ['class' => 'form-group has-feedback'],
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-phone form-control-feedback'></span>"
 ];
@@ -34,15 +34,18 @@ $fieldOptions3 = [
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
-		<?= $form->field($model, 'phone_number')->textInput(['autofocus' => true, 'placeholder' => '+<код страны> 123 456 7890']) ?>
-
 		<?= $form
-            ->field($model, 'username', $fieldOptions1)
-            ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+			->field($model, 'phone_number', $fieldOptionsMobile)
+			->label(false)
+			->textInput(['autofocus' => true, 'placeholder' => '+<код страны> 123 456 7890']) ?>
+
+<!--		--><?//= $form
+//            ->field($model, 'username', $fieldOptionsName)
+//            ->label(false)
+//            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
 
         <?= $form
-            ->field($model, 'password', $fieldOptions2)
+            ->field($model, 'password', $fieldOptionsPassword)
             ->label(false)
             ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
 

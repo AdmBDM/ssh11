@@ -31,17 +31,18 @@ AppAsset::register($this);
 
 <?= $this->render('header')?>
 <div class="wrap">
-<!--	--><?//= $this->render('header')?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
+	<?php $this->beginContent('@app/views/layouts/two_col.php'); ?>
+
+	<aside class='sidebar left_sidebar'>
+		<?= $this->render('@app/views/layouts/sidebar/left.php') ?>
+	</aside>
+	<section class='main right_main'>
+		<?php echo $content; ?>
+	</section>
+	<?php $this->endContent(); ?>
+
 </div>
-
 <?php $this->endBody() ?>
 <?= $this->render('footer')?>
 </body>

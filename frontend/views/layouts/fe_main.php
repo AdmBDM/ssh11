@@ -11,13 +11,15 @@ if (Yii::$app->controller->action->id === 'login') {
  * Instead, use the code  $this->layout = '//main-login'; in your controller.
  */
     echo $this->render(
-        'main-login',
+        'fe_main-login',
         ['content' => $content]
     );
 } else {
 
-    if (class_exists('backend\assets\AppAsset')) {
-        backend\assets\AppAsset::register($this);
+//    if (class_exists('backend\assets\AppAsset')) {
+    if (class_exists('frontend\assets\AppAsset')) {
+//        backend\assets\AppAsset::register($this);
+        frontend\assets\AppAsset::register($this);
     } else {
         app\assets\AppAsset::register($this);
     }
@@ -41,18 +43,18 @@ if (Yii::$app->controller->action->id === 'login') {
     <div class="wrapper">
 
         <?= $this->render(
-            'header.php',
+            'fe_header.php',
             ['directoryAsset' => $directoryAsset]
         ) ?>
 
         <?= $this->render(
-            'left.php',
+            'fe_left.php',
             ['directoryAsset' => $directoryAsset]
         )
         ?>
 
         <?= $this->render(
-            'content.php',
+            'fe_content.php',
             ['content' => $content, 'directoryAsset' => $directoryAsset]
         ) ?>
 
