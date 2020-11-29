@@ -45,7 +45,12 @@ class Fields
 				'title' => 'Заголовок',
 				'published' => 'Публиковать',
 				'sort' => 'Порядок',
-				'main' => 'main',
+				'main' => 'Главное',
+				'menu_head' => 'Верхнее',
+				'menu_right' => 'Правое',
+				'menu_footer' => 'Нижнее',
+				'menu_left' => 'Левое',
+				'group' => 'Группа',
 			];
 		}
 

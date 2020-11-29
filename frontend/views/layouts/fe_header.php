@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">1981</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
@@ -20,7 +20,7 @@ use yii\helpers\Html;
             <ul class="nav navbar-nav">
 
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+                <li class="dropdown messages-menu" style="visibility: hidden">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
                         <span class="label label-success">4</span>
@@ -101,7 +101,7 @@ use yii\helpers\Html;
                         <li class="footer"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
-                <li class="dropdown notifications-menu">
+                <li class="dropdown notifications-menu" style="visibility: hidden">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
                         <span class="label label-warning">10</span>
@@ -144,7 +144,7 @@ use yii\helpers\Html;
                     </ul>
                 </li>
                 <!-- Tasks: style can be found in dropdown.less -->
-                <li class="dropdown tasks-menu">
+                <li class="dropdown tasks-menu" style="visibility: hidden">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag-o"></i>
                         <span class="label label-danger">9</span>
@@ -230,7 +230,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -239,7 +239,7 @@ use yii\helpers\Html;
                                  alt="User Image"/>
 
                             <p>
-                                Alexander Pierce - Web Developer
+								<?= Yii::$app->params['username']; ?> - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>

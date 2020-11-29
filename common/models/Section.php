@@ -2,8 +2,10 @@
 
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "section".
@@ -16,7 +18,12 @@ use yii\db\ActiveRecord;
  * @property string $title
  * @property string $published
  * @property string $sort
- * @property string $main
+ * @property boolean $main
+ * @property boolean $menu_head
+ * @property boolean $menu_right
+ * @property boolean $menu_footer
+ * @property boolean $menu_left
+ * @property string $group
  *
  * @property Section $section
  * @property Section[] $sections
@@ -30,6 +37,9 @@ class Section extends ActiveRecord
 	const MENU_LEFT = 'menu_left';
 	const MENU_RIGHT = 'menu_right';
 	const MENU_FOOTER = 'menu_footer';
+	const GR_COMMON = 'common';
+	const GR_USER = 'user';
+	const GR_ALERT = 'alert';
 
 
     /**
@@ -89,14 +99,31 @@ class Section extends ActiveRecord
 //    }
 
 	/**
-	 * @param array $attributes
+	 * @param string $group
+	 *
+	 * @return Section[]
 	 */
-	public function getMenu($type, $conditions)
+	public static function getMenuGroup($group = 'common')
 	{
-		myDebug($conditions);
+		$menu = static::find()->where(['group' => $group, 'published' => true])->orderBy([new Expression('sort')])->all();
 
-		$menuItems = [];
-
-		return false;
+		$group_label = '---';
+		if ($group === self::GR_COMMON) { $group_label = 'Общее'; }
+		if ($group === self::GR_USER) { $group_label = 'Личное'; }
+		if ($group === self::GR_ALERT) { $group_label = 'Важно'; }
+		$menuItems[] = [
+			'label' => $group_label,
+			'icon' => 'share',
+			'options' => ['class' => 'header'],
+			'visible' => Yii::$app->user->identity->admin,
+		];
+		foreach ($menu as $menuItem) {
+			$menuItems[] = [
+				'label' => $menuItem->title,
+				'url' => [$menuItem->path],
+				'icon' => $menuItem->icon,
+			];
+		}
+		return $menuItems;
 	}
 }
