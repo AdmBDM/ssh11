@@ -1,0 +1,61 @@
+.memory
+	.memory-row
+		display: flex
+		flex-flow: row wrap
+		//flex-wrap: wrap
+		//justify-content: space-around
+		justify-content: flex-start
+		align-items: stretch
+
+		.memory-block
+			max-width: 170px
+			height: auto
+			margin: 5px
+			padding: 5px
+			//background: #359b47
+
+			.memory-photo
+				//max-width: 200px
+				max-height: 230px
+				text-align: center
+				overflow: hidden
+				img
+					width: 100%
+					object-fit: contain
+
+			.memory-date
+				margin-top: 5px
+				padding: 5px
+				width: 100%
+				text-align: center
+				border: 2px solid darkblue
+				font-weight: bold
+				font-style: italic
+
+			.memory-text
+				margin-top: 5px
+				width: 100%
+				text-align: center
+				text-wrap: normal
+
+
+		//max-width: 200px
+		//height: auto
+		//margin: 5px
+		////display: block
+		//border: 1px solid blue
+		//background: #359b47
+		//overflow: hidden
+		//display: flex
+
+		//.memory-photo
+		//	background-size: cover
+		//	max-width: 100%
+		//	img
+		//		min-width: 100%
+		//		min-height: auto
+				//flex-shrink: 0
+				//margin: 5px
+				//display: block
+				//max-width: 50%
+				//height: auto

@@ -231,6 +231,37 @@ a.desc:after {
   max-width: 50%;
   height: auto; }
 
+.memory .memory-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch; }
+  .memory .memory-row .memory-block {
+    max-width: 170px;
+    height: auto;
+    margin: 5px;
+    padding: 5px; }
+    .memory .memory-row .memory-block .memory-photo {
+      max-height: 230px;
+      text-align: center;
+      overflow: hidden; }
+      .memory .memory-row .memory-block .memory-photo img {
+        width: 100%;
+        object-fit: contain; }
+    .memory .memory-row .memory-block .memory-date {
+      margin-top: 5px;
+      padding: 5px;
+      width: 100%;
+      text-align: center;
+      border: 2px solid darkblue;
+      font-weight: bold;
+      font-style: italic; }
+    .memory .memory-row .memory-block .memory-text {
+      margin-top: 5px;
+      width: 100%;
+      text-align: center;
+      text-wrap: normal; }
+
 .site-how-login .instruction {
   display: block;
   width: 100%;

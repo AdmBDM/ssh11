@@ -7,7 +7,7 @@
 
 ?>
 <div class="content-wrapper">
-    <section class="content-header">
+    <section class="content-header" style="visibility: hidden">
 <!--        --><?php //if (isset($this->blocks['content-header'])) { ?>
 <!--            <h1>***--><?//= $this->blocks['content-header'] ?><!--</h1>-->
 <!--        --><?php //} else { ?>

@@ -1,10 +1,10 @@
 <?php
-use yii\helpers\Html;
+
+	use yii\helpers\Html;
 	use yii\web\View;
 
 	/* @var $this View */
-/* @var $content string */
-
+	/* @var $content string */
 
 	Yii::$app->name = Yii::$app->params['myAppName'];
 
