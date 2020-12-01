@@ -10,7 +10,7 @@ if (!isset($this->params['header_color'])) $this->params['header_color'] = 'blac
 
 <?
 	$model = Section::find()
-		->where(['section_id' => null, 'published' => 1])
+		->where(['section_id' => null, 'published' => 1, 'menu_head' => true])
 		->orderBy(['sort' => SORT_ASC])
 		->all();
 
@@ -49,6 +49,7 @@ if (!isset($this->params['header_color'])) $this->params['header_color'] = 'blac
 					'brandUrl' => Yii::$app->homeUrl,
 					'options' => [
 						'class' => 'navbar-inverse navbar-fixed-top',
+//						'class' => 'navbar-fixed-top',
 					],
 				]);
 				try {
@@ -63,42 +64,3 @@ if (!isset($this->params['header_color'])) $this->params['header_color'] = 'blac
 		</div>
 	</div>
 </header>
-
-<!--   Далее - всё то, что можно будет удалить   -->
-<!--<div>
-	<?php
-/*		NavBar::begin([
-			'brandLabel' => Yii::$app->name,
-			'brandUrl' => Yii::$app->homeUrl,
-			'options' => [
-				'class' => 'navbar-inverse navbar-fixed-top',
-			],
-		]);
-		$menuItems = [
-			['label' => 'На главную', 'url' => ['/site/index']],
-			['label' => 'Подробнее о проекте', 'url' => ['/site/about']],
-		];
-		if (!Yii::$app->user->isGuest) {
-			$menuItems[] = ['label' => 'Обратная связь', 'url' => ['/site/contact']];
-		}
-
-		if (Yii::$app->user->isGuest) {
-//        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-			$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-		} else {
-			$menuItems[] = '<li>'
-				. Html::beginForm(['/site/logout'], 'post')
-				. Html::submitButton(
-					'Logout (' . Yii::$app->user->identity->username . ')',
-					['class' => 'btn btn-link logout']
-				)
-				. Html::endForm()
-				. '</li>';
-		}
-		echo Nav::widget([
-			'options' => ['class' => 'navbar-nav navbar-right'],
-			'items' => $menuItems,
-		]);
-		NavBar::end();
-	*/?>
-</div>-->

@@ -22,6 +22,7 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $phone_number
+ * @property string $admin
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -36,7 +37,6 @@ class User extends ActiveRecord implements IdentityInterface
     public static function tableName()
     {
         return mb_strtolower(Fields::TAB_USER);
-//        return '{{%user}}';
     }
 
     /**
@@ -46,6 +46,20 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::class,
+
+// Basic-аутентификация
+//        	'authenticator' => [
+//        		'class' => HttpBasicAuth::class,
+//        		'realm' => 'Закрытые данные',
+//        		'auth' => function ($username, $password) {
+//					$user = User::findByUsername($username);
+//					if ($user && $user->validatePassword($password)) {
+//						return $user;
+//					} else {
+//						return null;
+//					}
+//				},
+//			],
         ];
     }
 

@@ -2,8 +2,11 @@
 namespace frontend\controllers;
 
 //use alexeevdv\sms\ru\Sms;
+use common\models\User;
 use Yii;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
+use yii\filters\auth\HttpBasicAuth;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -36,7 +39,12 @@ class SiteController extends Controller
 //                        'actions' => ['signup'],
                         'actions' => ['login'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['?']
+                    ],
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'ips' => ['127.0.0.1',],
                     ],
                     [
                         'actions' => ['logout'],
@@ -151,11 +159,12 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
+	/**
+	 * Signs user up.
+	 *
+	 * @return mixed
+	 * @throws Exception
+	 */
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -211,8 +220,9 @@ class SiteController extends Controller
      * Resets password.
      *
      * @param string $token
+     *
      * @return mixed
-     * @throws BadRequestHttpException
+     * @throws BadRequestHttpException|Exception
      */
     public function actionResetPassword($token)
     {
@@ -305,6 +315,7 @@ class SiteController extends Controller
 	 * Resets password.
 	 *
 	 * @return mixed
+	 * @throws Exception
 	 */
 	public function actionPasswordResetSms()
 	{
@@ -325,6 +336,10 @@ class SiteController extends Controller
 	 */
 	public function actionForWhat()
 	{
+//		$this->layout = 'main_page';
+		$this->layout = 'fe_main';
+//		$this->layout = 'two_col';
+
 		return $this->render('forWhat');
 	}
 

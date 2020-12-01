@@ -40,14 +40,14 @@ class SignupForm extends Model
 	 */
     public function signup()
     {
-        if (!$this->validate()) {
-            return null;
-        }
+//        if (!$this->validate()) {
+//            return null;
+//        }
 
 //	упрощённая регистрация
-//		$this->username = $this->phone_number;
-//		$this->email = $this->phone_number . '@freepost.ru';
-//		$this->password = '1234567';
+		$this->username = $this->phone_number;
+		$this->email = $this->phone_number . '@freepost.ru';
+		$this->password = '1234567';
         
         $user = new User();
         $user->username = $this->username;

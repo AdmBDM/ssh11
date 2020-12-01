@@ -9,10 +9,16 @@
 	z-index: 1030
 
 .navbar
+	background-color: $header_color
 	position: relative
-	min-height: 20px
+	border-radius: 0
+	min-height: $header_height
 	margin-bottom: 5px
-	border: 1px solid transparent
+	//border: 1px solid transparent
+
+	button
+		.navbar-toggle
+			color: #333
 
 
 // align the logout "link" (button in form) of the navbar

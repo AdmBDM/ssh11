@@ -12,6 +12,12 @@
 		define('DEBUG_TOOL_ON', 'off', true);
 	}
 
+// единый cookieValidationKey
+//			backend:	'cookieValidationKey' => 'riAjRTB34STElLugvWWp6jl826hPfJJ3'
+//			common:		'cookieValidationKey' => '-lr4inoNnPzYBi07_DId-_2plDLFIS8C'
+//			frontend:	'cookieValidationKey' => '4vbHgv9Anx7cHW3yzU-0B3cviGPSf7FH'
+	define('COMMON_COOKIE_VALIDATION_KEY', '-lr4inoNnPriAjRTB34ST4vbHgv9Anx7', true);
+
 // проверка при смене пароля:
 //			= email - через почту
 //			= sms   - через телефон
