@@ -16,7 +16,7 @@
 		</div>
 		<div class="memory-block">
 			<div class="memory-photo"><img src="../../images/memory/stepanova.png" alt='Photo' /></div>
-			<div class="memory-date">25.10.2020</div>
+			<div class="memory-date">24.10.2020</div>
 			<div class="memory-text">
 				Причина ухода: пандемия короновируса
 			</div>

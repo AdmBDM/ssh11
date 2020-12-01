@@ -38,7 +38,7 @@ class Vypusk81Controller extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Vypusk81::find(),
+            'query' => Vypusk81::find()->orderBy(['first_name' => SORT_ASC, 'last_name' => SORT_ASC, 'patronymic' => SORT_ASC]),
         ]);
 
         return $this->render('index', [

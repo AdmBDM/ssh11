@@ -7,6 +7,7 @@ class Fields
 	//определение локальных констант
 	const TAB_USER = 'User';
 	const TAB_SECTION = 'Section';
+	const TAB_VYPUSK81 = 'Vypusk81';
 	const FORM_LOGIN = 'Login';
 	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
@@ -87,6 +88,21 @@ class Fields
 			];
 		}
 
+		if ($objName == self::TAB_VYPUSK81) {
+			return [
+				'id' => 'ID',
+				'gender' => 'М/Ж',
+				'first_name_current' => 'Фамилия',
+				'first_name' => '',
+				'last_name' => 'Имя',
+				'patronymic' => 'Отчество',
+				'year_from' => 'С какого года',
+				'year_for' => 'По какой год',
+				'birthday' => 'День рождения',
+				'deathday' => 'Дата ухода',
+			];
+		}
+
 		// возвращаем, если объект не описан
 		return false;
 	}
@@ -162,6 +178,17 @@ class Fields
 					'filter' => ['status' => User::STATUS_ACTIVE],
 					'message' => 'Нет пользователя с таким номером.'
 				],
+			];
+		}
+
+		if ($objName == self::TAB_VYPUSK81) {
+			return [
+				[['first_name_current', 'first_name', 'last_name', 'patronymic'], 'string'],
+				[['year_from', 'year_for'], 'default', 'value' => null],
+				[['year_from', 'year_for'], 'integer'],
+				[['birthday', 'deathday'], 'safe'],
+				[['gender'], 'string', 'max' => 1],
+				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'classmate_id']],
 			];
 		}
 
