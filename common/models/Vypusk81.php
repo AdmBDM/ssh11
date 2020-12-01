@@ -42,7 +42,7 @@ class Vypusk81 extends \yii\db\ActiveRecord
 //            [['year_from', 'year_for', 'new_column'], 'integer'],
 //            [['birthday', 'deathday'], 'safe'],
 //            [['gender'], 'string', 'max' => 1],
-//            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'classmate_id']],
+//            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
 //        ];
 		return Fields::getRules(Fields::TAB_VYPUSK81);
     }
@@ -74,7 +74,7 @@ class Vypusk81 extends \yii\db\ActiveRecord
 //     */
 //    public function getId0()
 //    {
-//        return $this->hasOne(Profiles::class, ['classmate_id' => 'id']);
+//        return $this->hasOne(Profiles::class, ['vypusk81_id' => 'id']);
 //    }
 
     /**

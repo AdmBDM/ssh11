@@ -7,7 +7,7 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\Vypusk81 */
 
-$this->title = $model->id;
+$this->title = 'Идентификатор ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Vypusk81s', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
@@ -31,7 +31,7 @@ YiiAsset::register($this);
         'model' => $model,
         'attributes' => [
             'id',
-            'gender',
+//            'gender',
             'first_name_current',
             'first_name',
             'last_name',
@@ -39,7 +39,7 @@ YiiAsset::register($this);
             'year_from',
             'year_for',
             'birthday',
-            'deathday',
+//            'deathday',
         ],
     ]) ?>
 

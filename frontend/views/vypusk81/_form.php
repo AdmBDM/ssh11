@@ -14,11 +14,11 @@ use yii\widgets\ActiveForm;
 
 <!--    --><?//= $form->field($model, 'id')->textInput() ?>
 
-    <?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'first_name_current')->textInput() ?>
+<!--    --><?//= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'first_name')->textInput() ?>
+
+	<?= $form->field($model, 'first_name_current')->textInput() ?>
 
     <?= $form->field($model, 'last_name')->textInput() ?>
 
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'birthday')->textInput() ?>
 
-    <?= $form->field($model, 'deathday')->textInput() ?>
+<!--    --><?//= $form->field($model, 'deathday')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

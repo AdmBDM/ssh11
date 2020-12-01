@@ -8,6 +8,7 @@ class Fields
 	const TAB_USER = 'User';
 	const TAB_SECTION = 'Section';
 	const TAB_VYPUSK81 = 'Vypusk81';
+	const TAB_PROFILES = 'Profiles';
 	const FORM_LOGIN = 'Login';
 	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
@@ -92,14 +93,22 @@ class Fields
 			return [
 				'id' => 'ID',
 				'gender' => 'М/Ж',
-				'first_name_current' => 'Фамилия',
-				'first_name' => '',
+				'first_name_current' => 'Фамилия в настоящее время',
+				'first_name' => 'Фамилия',
 				'last_name' => 'Имя',
 				'patronymic' => 'Отчество',
 				'year_from' => 'С какого года',
 				'year_for' => 'По какой год',
 				'birthday' => 'День рождения',
 				'deathday' => 'Дата ухода',
+				'profile_id' => 'Users ID',
+			];
+		}
+
+		if ($objName == self::TAB_PROFILES) {
+			return [
+				'id' => 'ID',
+				'vypusk81_id' => 'vypusk81 ID',
 			];
 		}
 
@@ -188,7 +197,18 @@ class Fields
 				[['year_from', 'year_for'], 'integer'],
 				[['birthday', 'deathday'], 'safe'],
 				[['gender'], 'string', 'max' => 1],
-				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'classmate_id']],
+//				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
+				[['profile_id'], 'integer'],
+			];
+		}
+
+		if ($objName == self::TAB_PROFILES) {
+			return [
+				[['id'], 'required'],
+				[['id', 'vypusk81_id'], 'default', 'value' => null],
+				[['id', 'vypusk81_id'], 'integer'],
+				[['vypusk81_id'], 'unique'],
+				[['id'], 'unique'],
 			];
 		}
 
