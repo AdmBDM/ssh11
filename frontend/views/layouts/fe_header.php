@@ -229,17 +229,17 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image" style="visibility: hidden"/>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="visibility: hidden">
                         <!-- User image -->
                         <li class="user-header">
                             <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
                                  alt="User Image"/>
 
                             <p>
-								<?= Yii::$app->params['username']; ?> - Web Developer
+								<?= Yii::$app->user->identity->username; ?> - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
