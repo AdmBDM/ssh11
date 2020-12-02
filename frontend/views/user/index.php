@@ -2,28 +2,32 @@
 
 	use yii\grid\ActionColumn;
 	use yii\helpers\Html;
-	use yii\grid\GridView;
-	use yii\widgets\Pjax;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
+/* @var $searchModel frontend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Выпускники 1981';
+$this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
-<div class="vypusk81-index">
+<div class="user-index">
 
-	<h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
 	<p <?= (Yii::$app->user->identity->admin ?: 'style="visibility: hidden"'); ?>>
-		<?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
-	</p>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-	<?php Pjax::begin(); ?>
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-	<?= GridView::widget([
-		'dataProvider' => $dataProvider,
-		'columns' => [
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+//        'filterModel' => $searchModel,
+        'columns' => [
+//			['class' => 'yii\grid\SerialColumn'],
+
 			[
 				'class' => ActionColumn::class,
 				'template' => '{view} {update} {delete}',
@@ -31,15 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
 				'options' => ['style' => 'width: 100px;'],
 				'buttons' => [
 					'view' => function ($url, $model) {
-//						if (!Yii::$app->user->identity->admin) {
-//							return '';
-//						}
+						if (!Yii::$app->user->identity->admin) {
+							return '';
+						}
 						return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
 							'title' => 'Просмотреть',
 						]);
 					},
 					'update' => function ($url, $model) {
-						if (!Yii::$app->user->identity->admin && Yii::$app->user->id != $model->profile_id) {
+						if (!Yii::$app->user->identity->admin) {
 							return '';
 						}
 						return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
@@ -62,34 +66,18 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 
 			[
-				'label' => 'Ф И О',
+				'attribute' => 'username',
+				'options' => ['style' => 'width: 250px;']
+			],
+
+			[
+				'attribute' => 'phone_number',
+				'options' => ['style' => 'width: 150px;'],
+			],
+
+			[
+				'attribute' => 'email',
 				'options' => ['style' => 'width: 350px;'],
-				'format' => 'text',
-				'contentOptions' => ['style'=>'white-space: normal;'],
-				'value' => function($model) {
-					$return = $model->first_name . ' ';
-					$return .= (empty($model->first_name_current) ? '' : '(' . $model->first_name_current . ')') . ' ';
-					$return .= $model->last_name . ' ';
-					$return .= $model->patronymic;
-					return $return;
-				},
-			],
-
-			[
-				'attribute' => 'birthday',
-				'enableSorting' => false,
-				'options' => ['style' => 'width: 150px;'],
-			],
-
-			[
-				'label' => 'Годы учёбы',
-				'options' => ['style' => 'width: 150px;'],
-				'format' => 'text',
-				'value' => function($model) {
-					$return = (empty($model->year_from) ? '...' : $model->year_from) . '  -  ';
-					$return .= (empty($model->year_for) ? '...' : $model->year_for);
-					return $return;
-				},
 			],
 
 			[
@@ -97,12 +85,25 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'text',
 				'contentOptions' => ['style'=>'white-space: normal;'],
 				'value' => function($model) {
-					return (!empty($model->deathday) ? 'Уже не с нами' : '');
+					return ' ';
 				},
 			],
-		],
-	]); ?>
 
-	<?php Pjax::end(); ?>
+//			'id',
+//			'username',
+//			'auth_key',
+//			'password_hash',
+//			'password_reset_token',
+//			'email:email',
+//			'status',
+//			'created_at',
+//			'updated_at',
+//			'verification_token',
+//			'phone_number',
+//			'admin:boolean',
+		],
+    ]); ?>
+
+    <?php Pjax::end(); ?>
 
 </div>

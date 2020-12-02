@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'f6deb0131d6561c4aa109e0e56b55bcdcbc81e06',
+    'reference' => '14c6877fb4a15beb89f070fb27978312b2e18d74',
     'name' => 'yiisoft/yii2-app-advanced',
   ),
   'versions' => 
@@ -272,6 +272,25 @@ private static $installed = array (
       ),
       'reference' => '239400de7a173fe9901b9ac7c06497751f00727a',
     ),
+    'kartik-v/yii2-krajee-base' => 
+    array (
+      'pretty_version' => 'v2.0.5',
+      'version' => '2.0.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9ddb662bdf49fdb671a90853912a40418a26a0dd',
+    ),
+    'kartik-v/yii2-widget-datepicker' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+        0 => '1.4.x-dev',
+      ),
+      'reference' => 'fada92bc506d382ea3367daac6a1f7a9adf434b2',
+    ),
     'myclabs/deep-copy' => 
     array (
       'pretty_version' => '1.7.0',
@@ -280,15 +299,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e',
-    ),
-    'npm-asset/bootstrap' => 
-    array (
-      'pretty_version' => '4.5.3',
-      'version' => '4.5.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => NULL,
     ),
     'opis/closure' => 
     array (
@@ -734,7 +744,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'f6deb0131d6561c4aa109e0e56b55bcdcbc81e06',
+      'reference' => '14c6877fb4a15beb89f070fb27978312b2e18d74',
     ),
     'yiisoft/yii2-bootstrap' => 
     array (
@@ -744,15 +754,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '073c9ab0a4eb71f2485d84c96a1967130300d8fc',
-    ),
-    'yiisoft/yii2-bootstrap4' => 
-    array (
-      'pretty_version' => '2.0.9',
-      'version' => '2.0.9.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'a75555e4a888508416fadfd0a2b94881342cdd45',
     ),
     'yiisoft/yii2-composer' => 
     array (
