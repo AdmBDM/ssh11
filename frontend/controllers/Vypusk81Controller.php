@@ -88,6 +88,10 @@ class Vypusk81Controller extends Controller
     {
         $model = $this->findModel($id);
 
+        if (empty($model->profile_id)) {
+        	$model->profile_id = Yii::$app->user->id;
+		}
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -124,6 +128,7 @@ class Vypusk81Controller extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+//        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Запрашиваемая страница не существует.');
     }
 }
