@@ -89,9 +89,15 @@ a.desc:after {
   padding: 10px 20px;
   margin: 0 0 15px 0; }
 
-.vypusk81-index tbody > tr > td:first-child a:nth-child(1), .vypusk81-index tbody > tr > td:first-child a:nth-child(2), .vypusk81-index tbody > tr > td:first-child a:nth-child(3) {
+.vypusk81-index tbody > tr > td:first-child a:nth-child(1), .vypusk81-index tbody > tr > td:first-child a:nth-child(2), .vypusk81-index tbody > tr > td:first-child a:nth-child(3),
+.user-index tbody > tr > td:first-child a:nth-child(1),
+.user-index tbody > tr > td:first-child a:nth-child(2),
+.user-index tbody > tr > td:first-child a:nth-child(3) {
   margin-right: 10px; }
-  .vypusk81-index tbody > tr > td:first-child a:nth-child(1) .glyphicon-trash, .vypusk81-index tbody > tr > td:first-child a:nth-child(2) .glyphicon-trash, .vypusk81-index tbody > tr > td:first-child a:nth-child(3) .glyphicon-trash {
+  .vypusk81-index tbody > tr > td:first-child a:nth-child(1) .glyphicon-trash, .vypusk81-index tbody > tr > td:first-child a:nth-child(2) .glyphicon-trash, .vypusk81-index tbody > tr > td:first-child a:nth-child(3) .glyphicon-trash,
+  .user-index tbody > tr > td:first-child a:nth-child(1) .glyphicon-trash,
+  .user-index tbody > tr > td:first-child a:nth-child(2) .glyphicon-trash,
+  .user-index tbody > tr > td:first-child a:nth-child(3) .glyphicon-trash {
     color: darkred; }
 
 .header-normal-width .container-boxed-width {

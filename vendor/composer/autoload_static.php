@@ -30,7 +30,6 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
-            'yii\\bootstrap4\\' => 15,
             'yii\\' => 4,
         ),
         'r' => 
@@ -40,6 +39,11 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'k' => 
+        array (
+            'kartik\\date\\' => 12,
+            'kartik\\base\\' => 12,
         ),
         'd' => 
         array (
@@ -134,10 +138,6 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap/src',
         ),
-        'yii\\bootstrap4\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap4/src',
-        ),
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
@@ -151,6 +151,14 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker/src',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base/src',
         ),
         'dmstr\\' => 
         array (
