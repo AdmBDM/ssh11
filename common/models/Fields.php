@@ -34,6 +34,7 @@ class Fields
 				'verification_token' => 'Токен проверки',
 				'phone_number' => 'Мобильный',
 				'admin' => 'Админ',
+				'admin_edit' => 'Редактор',
 			];
 		}
 
@@ -102,7 +103,8 @@ class Fields
 				'birthday' => 'День рождения',
 				'deathday' => 'Дата ухода',
 				'profile_id' => 'Users ID',
-			];
+                'death_reason' => 'Причина ухода',
+            ];
 		}
 
 		if ($objName == self::TAB_PROFILES) {
@@ -120,6 +122,7 @@ class Fields
 	 * @param $objName
 	 *
 	 * @return array[]|false
+     *
 	 */
 	static public function getRules($objName) {
 		if ($objName == self::TAB_SECTION) {
@@ -192,10 +195,11 @@ class Fields
 
 		if ($objName == self::TAB_VYPUSK81) {
 			return [
-				[['first_name_current', 'first_name', 'last_name', 'patronymic'], 'string'],
+				[['first_name_current', 'first_name', 'last_name', 'patronymic', 'death_reason'], 'string'],
 				[['year_from', 'year_for'], 'default', 'value' => null],
 				[['year_from', 'year_for'], 'integer'],
-				[['birthday', 'deathday'], 'safe'],
+				[['death_year'], 'boolean'],
+				[['birthday', 'deathday', 'death_reason', 'death_year'], 'safe'],
 				[['gender'], 'string', 'max' => 1],
 //				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
 				[['profile_id'], 'integer'],

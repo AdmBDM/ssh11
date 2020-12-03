@@ -46,7 +46,7 @@
 
 <!--    --><?//= $form->field($model, 'deathday')->textInput() ?>
     <?php
-		if (Yii::$app->user->identity->admin) {
+		if (Yii::$app->user->identity->admin || Yii::$app->user->identity->admin_edit) {
 			echo $form->field($model, 'deathday')->widget(DatePicker::class, [
 //				'removeButton' => false,
 				'pluginOptions' => [
@@ -59,6 +59,7 @@
 				'language' => 'ru',
 //				'pickerButton' => "<span class=\"input-group-addon kv-date-calendar\" title=\"Выбрать дату\"><i class=\"fa fa-calendar-o\" 									aria-hidden=\"true\"></i></span>"
 			]);
+			echo $form->field($model, 'death_reason')->textInput();
 		}
 	?>
 
