@@ -115,7 +115,7 @@ class Section extends ActiveRecord
 			'label' => $group_label,
 			'icon' => 'share',
 			'options' => ['class' => 'header'],
-			'visible' => Yii::$app->user->identity->admin,
+//			'visible' => Yii::$app->user->identity->admin,
 		];
 		foreach ($menu as $menuItem) {
 			$menuItems[] = [

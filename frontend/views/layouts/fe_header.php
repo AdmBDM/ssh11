@@ -232,19 +232,18 @@ use yii\helpers\Html;
                         <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image" style="visibility: hidden"/>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username; ?></span>
                     </a>
-                    <ul class="dropdown-menu" style="visibility: hidden">
+                    <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
+<!--							<img src="--><?//= $directoryAsset ?><!--/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>-->
 
                             <p>
-								<?= Yii::$app->user->identity->username; ?> - Web Developer
-                                <small>Member since Nov. 2012</small>
+								<?= Yii::$app->user->identity->username; ?>
+<!--                                <small>Member since Nov. 2012</small>-->
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
+                        <li class="user-body" style="visibility: hidden">
                             <div class="col-xs-4 text-center">
                                 <a href="#">Followers</a>
                             </div>
@@ -258,11 +257,11 @@ use yii\helpers\Html;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" class="btn btn-default btn-flat">Профиль</a>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
+                                    'Выход',
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>
