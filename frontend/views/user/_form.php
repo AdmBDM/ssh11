@@ -12,7 +12,18 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+	<?php
+		if (!isset($model->id)) {
+
+			echo $form->field($model, 'username')->textInput(['autofocus' => true]);
+
+			echo $form->field($model, 'phone_number')->textInput();
+
+		} else {
+
+		    echo $form->field($model, 'status')->textInput();
+		}
+	?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

@@ -13,6 +13,11 @@ use yii\filters\VerbFilter;
  */
 class UserController extends MyController
 {
+	public $username;
+	public $email;
+	public $phone_number;
+	public $password;
+
     /**
      * {@inheritdoc}
      */
@@ -65,7 +70,23 @@ class UserController extends MyController
     {
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+		if ($model->load(Yii::$app->request->post())) {
+//	упрощённая регистрация
+			$user = new User();
+			$user->username = $_POST['User']['username'];
+			$user->email = clearPhone($_POST['User']['phone_number']) . '@freepost.ru';
+			$user->phone_number = clearPhone($_POST['User']['phone_number']);
+			$user->setPassword('1234567');
+			$user->generateAuthKey();
+			$user->generateEmailVerificationToken();
+
+			if ($user->save()) {
+				return $this->redirect(['view', 'id' => $user->id]);
+			}
+			throw new NotFoundHttpException('id - ' . $user->id . '   >>>   ' . 'name - ' . $user->username . '   >>>   ' . 'mobile - ' . $user->phone_number . '   >>>   ' . 'Нажата кнопка "Сохранить". Но что-то не получилось!');
+		}
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

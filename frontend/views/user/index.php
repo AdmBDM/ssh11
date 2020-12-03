@@ -66,6 +66,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 
 			[
+				'attribute' => 'id',
+				'options' => ['style' => 'width: 50px;']
+			],
+
+			[
 				'attribute' => 'username',
 				'options' => ['style' => 'width: 250px;']
 			],

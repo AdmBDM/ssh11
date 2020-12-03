@@ -5,7 +5,6 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Vypusk81;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -14,7 +13,6 @@ use yii\filters\VerbFilter;
  */
 class Vypusk81Controller extends MyController
 {
-//	public $layout = 'fe_main';
 
 	/**
      * {@inheritdoc}
