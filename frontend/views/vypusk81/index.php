@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						]);
 					},
 					'update' => function ($url, $model) {
-						if (!Yii::$app->user->identity->admin && Yii::$app->user->id != $model->profile_id) {
+						if (!Yii::$app->user->identity->admin && !Yii::$app->user->identity->admin_edit && Yii::$app->user->id != $model->profile_id) {
 							return '';
 						}
 						return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
