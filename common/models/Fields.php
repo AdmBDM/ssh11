@@ -35,6 +35,7 @@ class Fields
 				'phone_number' => 'Мобильный',
 				'admin' => 'Админ',
 				'admin_edit' => 'Редактор',
+				'image' => 'Фото',
 			];
 		}
 
@@ -104,6 +105,7 @@ class Fields
 				'deathday' => 'Дата ухода',
 				'profile_id' => 'Users ID',
                 'death_reason' => 'Причина ухода',
+				'image' => 'Фото',
             ];
 		}
 
@@ -203,6 +205,8 @@ class Fields
 				[['gender'], 'string', 'max' => 1],
 //				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
 				[['profile_id'], 'integer'],
+				[['image'], 'file', 'extensions' => 'png, jpg'],
+//				[['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
 			];
 		}
 

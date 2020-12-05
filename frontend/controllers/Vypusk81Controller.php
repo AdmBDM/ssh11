@@ -7,6 +7,7 @@ use common\models\Vypusk81;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * Vypusk81Controller implements the CRUD actions for Vypusk81 model.
@@ -91,6 +92,14 @@ class Vypusk81Controller extends MyController
 		}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        	$model->image = UploadedFile::getInstance($model, 'image');
+			if( $model->image ){
+				$model->upload();
+			}
+
+        	Yii::$app->session->setFlash('success', 'Информация обновлена.');
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

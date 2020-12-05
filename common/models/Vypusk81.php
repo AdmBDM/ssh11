@@ -3,31 +3,46 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "vypusk81".
  *
- * @property int $id
- * @property string $gender
+ * @property int         $id
+ * @property string      $gender
  * @property string|null $first_name_current
  * @property string|null $first_name
  * @property string|null $last_name
  * @property string|null $patronymic
- * @property int|null $year_from
- * @property int|null $year_for
+ * @property int|null    $year_from
+ * @property int|null    $year_for
  * @property string|null $birthday
  * @property string|null $deathday
  *
- * @property Profiles $id0
+ * @property Profiles    $id0
  */
-class Vypusk81 extends \yii\db\ActiveRecord
+class Vypusk81 extends ActiveRecord
 {
+	public $image;
+	public $gallery;
+
+	/**
+	 * @return string[][]
+	 */
+	public function behaviors()
+	{
+		return [
+			'image' => [
+				'class' => 'rico\yii2images\behaviors\ImageBehave',
+			]
+		];
+	}
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-//        return 'vypusk81';
         return mb_strtolower(Fields::TAB_VYPUSK81);
     }
 
@@ -85,4 +100,21 @@ class Vypusk81 extends \yii\db\ActiveRecord
     {
         return new Vypusk81Query(get_called_class());
     }
+
+	/**
+	 * @return bool
+	 */
+	public function upload() {
+		if ($this->validate()) {
+			$path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
+			$this->image->saveAs($path);
+			$this->attachImage($path, true, 'id' . Yii::$app->user->id);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
+
+

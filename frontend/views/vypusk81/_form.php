@@ -12,7 +12,7 @@
 
 <div class="vypusk81-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 <!--    --><?//= $form->field($model, 'id')->textInput() ?>
 
@@ -61,6 +61,9 @@
 			]);
 			echo $form->field($model, 'death_reason')->textInput();
 		}
+
+		echo $form->field($model, 'image')->fileInput();
+
 	?>
 
     <div class="form-group">

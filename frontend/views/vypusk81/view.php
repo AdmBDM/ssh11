@@ -27,6 +27,8 @@ YiiAsset::register($this);
         ]) ?>
     </p>
 
+	<?php $img = $model->getImage(); ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -40,6 +42,11 @@ YiiAsset::register($this);
             'year_for',
             'birthday',
 //            'deathday',
+			[
+				'attribute' => 'image',
+				'value' => "<img src='{$img->getUrl()}'>",
+				'format' => 'html',
+			],
         ],
     ]) ?>
 
