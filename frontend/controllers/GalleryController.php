@@ -3,21 +3,19 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\Vypusk81;
+use common\models\Gallery;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * Vypusk81Controller implements the CRUD actions for Vypusk81 model.
+ * GalleryController implements the CRUD actions for Gallery model.
  */
-class Vypusk81Controller extends MyController
+class GalleryController extends MyController
 {
-
 	/**
-     * {@inheritdoc}
-     */
+	 * @return array
+	 */
     public function behaviors()
     {
         return [
@@ -27,17 +25,20 @@ class Vypusk81Controller extends MyController
                     'delete' => ['POST'],
                 ],
             ],
+			'image' => [
+				'class' => 'rico\yii2images\behaviors\ImageBehave',
+			],
         ];
     }
 
     /**
-     * Lists all Vypusk81 models.
+     * Lists all Gallery models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Vypusk81::find()->orderBy(['first_name' => SORT_ASC, 'last_name' => SORT_ASC, 'patronymic' => SORT_ASC]),
+            'query' => Gallery::find(),
         ]);
 
         return $this->render('index', [
@@ -46,7 +47,7 @@ class Vypusk81Controller extends MyController
     }
 
     /**
-     * Displays a single Vypusk81 model.
+     * Displays a single Gallery model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,13 +60,13 @@ class Vypusk81Controller extends MyController
     }
 
     /**
-     * Creates a new Vypusk81 model.
+     * Creates a new Gallery model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Vypusk81();
+        $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -77,7 +78,7 @@ class Vypusk81Controller extends MyController
     }
 
     /**
-     * Updates an existing Vypusk81 model.
+     * Updates an existing Gallery model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,27 +88,7 @@ class Vypusk81Controller extends MyController
     {
         $model = $this->findModel($id);
 
-        if (empty($model->profile_id)) {
-        	$model->profile_id = Yii::$app->user->id;
-		}
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-// сохранение картинки
-        	$model->image = UploadedFile::getInstance($model, 'image');
-			if( $model->image ){
-				$model->upload();
-			}
-			unset($model->image);
-
-// сохранение галереи
-        	$model->gallery = UploadedFile::getInstances($model, 'gallery');
-			if( $model->gallery ){
-				$model->uploadGallery();
-			}
-
-        	Yii::$app->session->setFlash('success', 'Информация обновлена.');
-
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -117,7 +98,7 @@ class Vypusk81Controller extends MyController
     }
 
     /**
-     * Deletes an existing Vypusk81 model.
+     * Deletes an existing Gallery model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -131,19 +112,18 @@ class Vypusk81Controller extends MyController
     }
 
     /**
-     * Finds the Vypusk81 model based on its primary key value.
+     * Finds the Gallery model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Vypusk81 the loaded model
+     * @return Gallery the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Vypusk81::findOne($id)) !== null) {
+        if (($model = Gallery::findOne($id)) !== null) {
             return $model;
         }
 
-//        throw new NotFoundHttpException('The requested page does not exist.');
-        throw new NotFoundHttpException('Запрашиваемая страница не существует.');
+        throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+//use Yii;
 use yii\db\ActiveRecord;
 
 /**
@@ -51,14 +51,6 @@ class Vypusk81 extends ActiveRecord
      */
     public function rules()
     {
-//        return [
-//            [['first_name_current', 'first_name', 'last_name', 'patronymic'], 'string'],
-//            [['year_from', 'year_for', 'new_column'], 'default', 'value' => null],
-//            [['year_from', 'year_for', 'new_column'], 'integer'],
-//            [['birthday', 'deathday'], 'safe'],
-//            [['gender'], 'string', 'max' => 1],
-//            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
-//        ];
 		return Fields::getRules(Fields::TAB_VYPUSK81);
     }
 
@@ -67,18 +59,6 @@ class Vypusk81 extends ActiveRecord
      */
     public function attributeLabels()
     {
-//        return [
-//            'id' => 'ID',
-//            'gender' => 'Gender',
-//            'first_name_current' => 'First Name Current',
-//            'first_name' => 'First Name',
-//            'last_name' => 'Last Name',
-//            'patronymic' => 'Patronymic',
-//            'year_from' => 'Year From',
-//            'year_for' => 'Year For',
-//            'birthday' => 'Birthday',
-//            'deathday' => 'Deathday',
-//        ];
 		return Fields::getAttributes(Fields::TAB_VYPUSK81);
     }
 
@@ -108,13 +88,48 @@ class Vypusk81 extends ActiveRecord
 		if ($this->validate()) {
 			$path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
 			$this->image->saveAs($path);
-			$this->attachImage($path, true, 'id' . Yii::$app->user->id);
+//			$this->attachImage($path, true, 'id' . Yii::$app->user->id);
+			$this->attachImage($path, true);
+//			@unlink($path);
+			unlink($path);
 			return true;
 		} else {
 			return false;
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
+	public function uploadGallery(){
+		if($this->validate()){
+			foreach($this->gallery as $file){
+				$path = 'upload/store/' . $file->baseName . '.' . $file->extension;
+				$file->saveAs($path);
+				$this->attachImage($path);
+				@unlink($path);
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * @param $id
+	 *
+	 * @return string
+	 */
+	public static function getFIO($id) {
+		if (($model = Vypusk81::findOne($id)) !== null) {
+			$return = $model->first_name . ' ';
+			$return .= (empty($model->first_name_current) ? '' : '(' . $model->first_name_current . ')') . ' ';
+			$return .= $model->last_name . ' ';
+			$return .= $model->patronymic;
+			return $return;
+		}
+		return 'без имени';
+	}
 }
 
 

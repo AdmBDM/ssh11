@@ -118,10 +118,19 @@ class Section extends ActiveRecord
 //			'visible' => Yii::$app->user->identity->admin,
 		];
 		foreach ($menu as $menuItem) {
+			if ($menuItem->title == 'Общая галерея') {
+				$items = [
+					['label' => '1979', 'url' => 'for-what', 'icon' => 'user-circle'],
+					['label' => '1981', 'url' => 'for-what', 'icon' => 'user-circle'],
+				];
+			} else {
+				$items = null;
+			}
 			$menuItems[] = [
 				'label' => $menuItem->title,
 				'url' => [$menuItem->path],
 				'icon' => $menuItem->icon,
+				'items' => $items,
 			];
 		}
 		return $menuItems;

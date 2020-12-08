@@ -9,6 +9,7 @@ class Fields
 	const TAB_SECTION = 'Section';
 	const TAB_VYPUSK81 = 'Vypusk81';
 	const TAB_PROFILES = 'Profiles';
+	const TAB_GALLERY = 'Gallery';
 	const FORM_LOGIN = 'Login';
 	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
@@ -106,6 +107,7 @@ class Fields
 				'profile_id' => 'Users ID',
                 'death_reason' => 'Причина ухода',
 				'image' => 'Фото',
+				'gallery' => 'Галерея',
             ];
 		}
 
@@ -113,6 +115,15 @@ class Fields
 			return [
 				'id' => 'ID',
 				'vypusk81_id' => 'vypusk81 ID',
+			];
+		}
+
+		if ($objName == self::TAB_GALLERY) {
+			return [
+				'id' => 'ID',
+				'gallery_name' => 'Наименование',
+				'issue81_id' => 'ID владельца',
+				'for_all' => 'Для всех',
 			];
 		}
 
@@ -205,8 +216,8 @@ class Fields
 				[['gender'], 'string', 'max' => 1],
 //				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
 				[['profile_id'], 'integer'],
-				[['image'], 'file', 'extensions' => 'png, jpg'],
-//				[['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
+				[['image'], 'file', 'extensions' => 'png, jpg, jpeg'],
+				[['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
 			];
 		}
 
@@ -217,6 +228,15 @@ class Fields
 				[['id', 'vypusk81_id'], 'integer'],
 				[['vypusk81_id'], 'unique'],
 				[['id'], 'unique'],
+			];
+		}
+
+		if ($objName == self::TAB_GALLERY) {
+			return [
+				[['gallery_name'], 'string'],
+				[['issue81_id'], 'default', 'value' => null],
+				[['issue81_id'], 'integer'],
+				[['for_all'], 'boolean'],
 			];
 		}
 

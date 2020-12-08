@@ -40,6 +40,7 @@ use common\models\Section;<?/*= $directoryAsset */?>/img/user2-160x160.jpg" clas
 				['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'], 'visible' => Yii::$app->user->identity->admin],
 				['label' => 'Выпуск', 'icon' => 'book', 'url' => ['vypusk81/index'], 'visible' => Yii::$app->user->identity->admin],
 				['label' => 'Юзеры', 'icon' => 'user-secret', 'url' => ['user/index'], 'visible' => Yii::$app->user->identity->admin],
+				['label' => 'Галерея', 'icon' => 'sitemap', 'url' => ['gallery/index'], 'visible' => Yii::$app->user->identity->admin],
 
 			];
 			$menuUser = Section::getMenuGroup(Section::GR_USER);
