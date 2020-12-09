@@ -336,9 +336,7 @@ class SiteController extends Controller
 	 */
 	public function actionForWhat()
 	{
-//		$this->layout = 'main_page';
 		$this->layout = 'fe_main';
-//		$this->layout = 'two_col';
 
 		return $this->render('forWhat');
 	}

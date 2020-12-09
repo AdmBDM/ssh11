@@ -37,6 +37,7 @@ class Section extends ActiveRecord
 	const MENU_LEFT = 'menu_left';
 	const MENU_RIGHT = 'menu_right';
 	const MENU_FOOTER = 'menu_footer';
+	const GR_ADMIN = 'admin';
 	const GR_COMMON = 'common';
 	const GR_USER = 'user';
 	const GR_ALERT = 'alert';
@@ -105,12 +106,17 @@ class Section extends ActiveRecord
 	 */
 	public static function getMenuGroup($group = 'common')
 	{
-		$menu = static::find()->where(['group' => $group, 'published' => true])->orderBy([new Expression('sort')])->all();
+		$menu = static::find()
+			->where(['group' => $group, 'published' => true])
+			->orderBy([new Expression('sort')])
+			->all();
 
 		$group_label = '---';
+		if ($group === self::GR_ADMIN) { $group_label = 'Управление'; }
 		if ($group === self::GR_COMMON) { $group_label = 'Общее'; }
 		if ($group === self::GR_USER) { $group_label = 'Личное'; }
 		if ($group === self::GR_ALERT) { $group_label = 'Важно'; }
+
 		$menuItems[] = [
 			'label' => $group_label,
 			'icon' => 'share',
@@ -118,19 +124,28 @@ class Section extends ActiveRecord
 //			'visible' => Yii::$app->user->identity->admin,
 		];
 		foreach ($menu as $menuItem) {
-			if ($menuItem->title == 'Общая галерея') {
-				$items = [
-					['label' => '1979', 'url' => 'for-what', 'icon' => 'user-circle'],
-					['label' => '1981', 'url' => 'for-what', 'icon' => 'user-circle'],
-				];
+			if ($menuItem->has_menu) {
+				$subMenu = static::find()
+					->where(['section_id' => $menuItem->id, 'published' => true])
+					->orderBy([new Expression('sort')])
+					->all();
+				foreach ($subMenu as $subItem) {
+					$items[] = [
+						'label' => $subItem->title,
+						'url' => [$subItem->path],
+						'icon' => $subItem->icon,
+					];
+				}
 			} else {
 				$items = null;
 			}
+
 			$menuItems[] = [
 				'label' => $menuItem->title,
 				'url' => [$menuItem->path],
 				'icon' => $menuItem->icon,
 				'items' => $items,
+				'visible' => ($group === self::GR_ADMIN ? Yii::$app->user->identity->admin : true),
 			];
 		}
 		return $menuItems;

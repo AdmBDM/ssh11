@@ -15,7 +15,8 @@ YiiAsset::register($this);
 
 <?php
 	$mainImg = $model->getImage();
-//	$gallery = $model->getImages();
+	$gallery = $model->getImages();
+	$imgPath = Yii::$app->params['imgStore'];
 ?>
 
 <div class="vypusk81-view">
@@ -70,6 +71,7 @@ YiiAsset::register($this);
 //	?>
 
 	<div class="memory-photo">
-		<img src="/upload/store/<?= $mainImg->filePath ?>" alt="test">
+<!--		<img src="/upload/store/--><?//= $mainImg->filePath ?><!--" alt="test">-->
+		<img src="/<?= $imgPath . $mainImg->filePath ?>" alt="test">
 	</div>
 </div>

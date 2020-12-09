@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 class Fields
 {
 	//определение локальных констант
@@ -217,7 +219,7 @@ class Fields
 //				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
 				[['profile_id'], 'integer'],
 				[['image'], 'file', 'extensions' => 'png, jpg, jpeg'],
-				[['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
+				[['gallery'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 4],
 			];
 		}
 
@@ -237,6 +239,17 @@ class Fields
 				[['issue81_id'], 'default', 'value' => null],
 				[['issue81_id'], 'integer'],
 				[['for_all'], 'boolean'],
+				[['image'], 'file', 'extensions' => Yii::$app->params['imgExt']],
+				[['gallery'], 'file', 'extensions' => Yii::$app->params['imgExt'], 'maxFiles' => Yii::$app->params['lenGallery']],
+			];
+		}
+
+		if ($objName == self::TAB_USER) {
+			return [
+				['status', 'default', 'value' => User::STATUS_INACTIVE],
+				['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_DELETED]],
+				[['image'], 'file', 'extensions' => Yii::$app->params['imgExt']],
+				[['gallery'], 'file', 'extensions' => Yii::$app->params['imgExt'], 'maxFiles' => Yii::$app->params['lenGallery']],
 			];
 		}
 

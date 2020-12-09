@@ -1,7 +1,9 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\DetailView;
+//	use common\models\Gallery;
+	use yii\helpers\Html;
+	use yii\web\YiiAsset;
+	use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Gallery */
@@ -9,7 +11,12 @@ use yii\widgets\DetailView;
 $this->title = 'Галерея "' . $model->gallery_name . '" (' . $model->id . ')';
 $this->params['breadcrumbs'][] = ['label' => 'Galleries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
+
+$imgMain = $model->getImage();
+$imgGallery = $model->getImages();
+$imgPath = Yii::$app->params['imgStore'];
+
 ?>
 <div class="gallery-view">
 
@@ -33,6 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'gallery_name',
             'issue81_id',
             'for_all:boolean',
+			[
+				'label' => 'test',
+				'value' => Html::img($imgMain->getUrl('250x'), ['alt' => '']),
+				'format' => 'html'
+			],
         ],
     ]) ?>
 

@@ -7,6 +7,7 @@ use common\models\Gallery;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * GalleryController implements the CRUD actions for Gallery model.
@@ -89,6 +90,21 @@ class GalleryController extends MyController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+// сохранение картинки
+			$model->image = UploadedFile::getInstance($model, 'image');
+			if( $model->image ){
+				$model->upload();
+			}
+			unset($model->image);
+
+// сохранение галереи
+			$model->gallery = UploadedFile::getInstances($model, 'gallery');
+			if( $model->gallery ){
+				$model->uploadGallery();
+			}
+
+			Yii::$app->session->setFlash('success', 'Информация обновлена.');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -126,4 +142,16 @@ class GalleryController extends MyController
 
         throw new NotFoundHttpException('Запрашиваемая страница не найдена.');
     }
+
+	/**
+	 * @return string
+	 */
+	public function actionViewGallery($id)
+	{
+		$model = $this->findModel($id);
+
+		return $this->render('viewGallery', [
+			'model' => $model,
+		]);
+	}
 }

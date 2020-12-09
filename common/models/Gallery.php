@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 /**
@@ -14,6 +15,10 @@ use yii\db\ActiveRecord;
  */
 class Gallery extends ActiveRecord
 {
+	const GALLERY_COMMON = 0;
+	const GALLERY_ANIMAL = 1;
+	const GALLERY_USER = 2;
+
 	public $image;
 	public $gallery;
 
@@ -64,6 +69,42 @@ class Gallery extends ActiveRecord
 
 	public static function getOwner($id = 0) {
 		return Vypusk81::getFIO($id);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function upload() {
+		if ($this->validate()) {
+//			$path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
+			$path = Yii::$app->params['imgStore'] . $this->image->baseName . '.' . $this->image->extension;
+			$this->image->saveAs($path);
+//			$this->attachImage($path, true, 'id' . Yii::$app->user->id);
+			$this->attachImage($path, true);
+//			@unlink($path);
+			unlink($path);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function uploadGallery(){
+		if($this->validate()){
+			foreach($this->gallery as $file){
+//				$path = 'upload/store/' . $file->baseName . '.' . $file->extension;
+				$path = Yii::$app->params['imgStore'] . $file->baseName . '.' . $file->extension;
+				$file->saveAs($path);
+				$this->attachImage($path);
+				@unlink($path);
+			}
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

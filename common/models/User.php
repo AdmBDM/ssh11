@@ -54,7 +54,6 @@ class User extends ActiveRecord implements IdentityInterface
 //				'class' => 'rico\yii2images\behaviors\ImageBehave',
 //			],
 
-
 // Basic-аутентификация
 //        	'authenticator' => [
 //        		'class' => HttpBasicAuth::class,
@@ -83,12 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function rules()
     {
-        return [
-            ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-			[['image'], 'file', 'extensions' => 'png, jpg'],
-//			[['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4],
-        ];
+    	return Fields::getRules(Fields::TAB_USER);
     }
 
     /**

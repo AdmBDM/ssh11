@@ -11,8 +11,8 @@ use yii\db\ActiveQuery;
  */
 class Vypusk81Query extends ActiveQuery
 {
-//	public $image;
-//	public $gallery;
+	public $image;
+	public $gallery;
 
 	/**
 	 * @return string[][]

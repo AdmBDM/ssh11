@@ -20,8 +20,11 @@ return [
 			//if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
 			'imagesStorePath' => 'upload/store', //path to origin images
 			'imagesCachePath' => 'upload/cache', //path to resized copies
+//			'imagesStorePath' => Yii::$app->params['imgStoreMin'], //path to origin images
+//			'imagesCachePath' => Yii::$app->params['imgCacheMin'], //path to resized copies
 			'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
 			'placeHolderPath' => '@webroot/upload/store/no-image.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
+//			'placeHolderPath' => '@webroot/' . Yii::$app->params['imgStore'] . 'no-image.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
 		],
 
 	],

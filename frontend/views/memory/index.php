@@ -10,7 +10,8 @@
 	$this->title = 'Аллея памяти';
 	$this->params['breadcrumbs'][] = $this->title;
 
-	$memory = Vypusk81::find()->where('not deathday isnull')->orderBy('deathday ASC')  ->all();
+	$memory = Vypusk81::find()->where('not deathday isnull')->orderBy('deathday ASC')->all();
+	$pathStore = Yii::$app->params['imgStore'];
 
 ?>
 <div class="memory">
@@ -18,10 +19,13 @@
 	<div class="memory-row">
 		<?php
 			foreach ($memory as $item) {
-				$mainImg = $item->getImage();
+				$imgMain = $item->getImage();
 				echo '<div class="memory-block">';
 					echo '<div class="memory-photo">';
-						echo '<img src="/upload/store/' . $mainImg->filePath . '" alt="test">';
+//						echo '<img src="/upload/store/' . $imgMain->filePath . '" alt="test">';
+						echo '<img src="/'. $pathStore . $imgMain->filePath . '" alt="test">';
+//						echo '<img src="' . $imgMain->getUrl() . '" alt="test">';
+//						echo Html::img($imgMain->getUrl(), ['alt' => '']);
 					echo '</div>';
 					echo '<div class="memory-comment">';
 						echo '<div class="memory-date">';

@@ -34,15 +34,7 @@ use common\models\Section;<?/*= $directoryAsset */?>/img/user2-160x160.jpg" clas
 
 <!--	Формирование массива меню	-->
 		<?php
-			$menuAdmin = [
-				['label' => 'Управление', 'options' => ['class' => 'header'], 'visible' => Yii::$app->user->identity->admin],
-				['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'], 'visible' => Yii::$app->user->identity->admin],
-				['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'], 'visible' => Yii::$app->user->identity->admin],
-				['label' => 'Выпуск', 'icon' => 'book', 'url' => ['vypusk81/index'], 'visible' => Yii::$app->user->identity->admin],
-				['label' => 'Юзеры', 'icon' => 'user-secret', 'url' => ['user/index'], 'visible' => Yii::$app->user->identity->admin],
-				['label' => 'Галерея', 'icon' => 'sitemap', 'url' => ['gallery/index'], 'visible' => Yii::$app->user->identity->admin],
-
-			];
+			$menuAdmin = Yii::$app->user->identity->admin ? Section::getMenuGroup(Section::GR_ADMIN) : [];
 			$menuUser = Section::getMenuGroup(Section::GR_USER);
 			$menuCommon = Section::getMenuGroup(Section::GR_COMMON);
 			$menuAlert = Section::getMenuGroup(Section::GR_ALERT);

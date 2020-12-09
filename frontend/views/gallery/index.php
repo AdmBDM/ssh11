@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 			[
 				'class' => ActionColumn::class,
-				'template' => '{view} {update} {delete}',
+				'template' => '{view} {view-gallery} {update} {delete}',
 				'header' => 'Действия',
 				'options' => ['style' => 'width: 100px;'],
 				'buttons' => [
@@ -38,6 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //						}
 						return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
 							'title' => 'Просмотреть',
+						]);
+					},
+					'view-gallery' => function ($url) {
+						return Html::a('<span class="glyphicon glyphicon-book"></span>', $url, [
+							'title' => 'Просмотреть галерею',
 						]);
 					},
 					'update' => function ($url, $model) {
@@ -64,7 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				],
 			],
 
-//			'id',
 			'gallery_name',
 
 			[
@@ -73,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'text',
 				'contentOptions' => ['style'=>'white-space: normal;'],
 				'value' => function($model) {
-					return Gallery::getOwner($model->id);
+					return Gallery::getOwner($model->issue81_id);
 				},
 			],
 
@@ -87,8 +91,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				'value' => function() {return '';},
 			],
 
-//			['class' => 'yii\grid\SerialColumn'],
-//			['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

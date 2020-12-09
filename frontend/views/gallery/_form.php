@@ -16,6 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'issue81_id')->textInput() ?>
 
+<!--	--><?//= $form->field($model, 'image')->fileInput() ?>
+	<?= $form->field($model, 'gallery[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+
     <?= $form->field($model, 'for_all')->checkbox() ?>
 
     <div class="form-group">
