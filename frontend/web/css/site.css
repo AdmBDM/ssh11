@@ -332,4 +332,15 @@ a.desc:after {
   height: 100px;
   background: #f00; }
 
+.view-gallery .row {
+  width: 100%;
+  padding: 5px 20px; }
+  .view-gallery .row .carousel-indicator {
+    bottom: -30px; }
+  .view-gallery .row .carousel-inner {
+    margin-left: 50px;
+    margin-right: 50px; }
+  .view-gallery .row .carousel-control {
+    width: 50px; }
+
 /*# sourceMappingURL=site.css.map */

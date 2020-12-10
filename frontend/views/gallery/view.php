@@ -42,7 +42,7 @@ $imgPath = Yii::$app->params['imgStore'];
             'for_all:boolean',
 			[
 				'label' => 'test',
-				'value' => Html::img($imgMain->getUrl('250x'), ['alt' => '']),
+				'value' => Html::img($imgMain->getUrl('x200'), ['alt' => '']),
 				'format' => 'html'
 			],
         ],

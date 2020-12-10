@@ -2,9 +2,11 @@
 
 namespace frontend\controllers;
 
+use common\models\Vypusk81;
 use Yii;
 use common\models\Gallery;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
@@ -149,9 +151,21 @@ class GalleryController extends MyController
 	public function actionViewGallery($id)
 	{
 		$model = $this->findModel($id);
+		$gallery = $model->getImages();
+
+		$images = [];
+		foreach ($gallery as $item) {
+			$images[] = Html::img($item->getUrl('x200'), ['alt' => '']);
+		}
 
 		return $this->render('viewGallery', [
 			'model' => $model,
+			'gallery' => $gallery,
+			'images' => $images,
+			'option' => [
+				'owner_fio' => Vypusk81::getFIO($gallery->issue81_id),
+				'name' => $model->gallery_name,
+			],
 		]);
 	}
 }
