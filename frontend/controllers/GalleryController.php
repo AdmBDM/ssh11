@@ -163,7 +163,7 @@ class GalleryController extends MyController
 			'gallery' => $gallery,
 			'images' => $images,
 			'option' => [
-				'owner_fio' => Vypusk81::getFIO($gallery->issue81_id),
+				'owner_fio' => Vypusk81::getFIO($model->issue81_id),
 				'name' => $model->gallery_name,
 			],
 		]);
