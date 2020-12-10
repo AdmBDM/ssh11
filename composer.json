@@ -25,7 +25,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "alexeevdv/yii2-sms-ru": "dev-master",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "kartik-v/yii2-widget-datepicker": "@dev"
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "costa-rico/yii2-images": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

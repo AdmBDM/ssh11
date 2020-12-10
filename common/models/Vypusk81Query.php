@@ -11,6 +11,21 @@ use yii\db\ActiveQuery;
  */
 class Vypusk81Query extends ActiveQuery
 {
+	public $image;
+	public $gallery;
+
+	/**
+	 * @return string[][]
+	 */
+	public function behaviors()
+	{
+		return [
+			'image' => [
+				'class' => 'rico\yii2images\behaviors\ImageBehave',
+			]
+		];
+	}
+
     /*public function active()
     {
         return $this->andWhere('[[status]]=1');

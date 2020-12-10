@@ -16,9 +16,9 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
-        '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -35,6 +35,7 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
         'r' => 
         array (
             'rmrevin\\yii\\fontawesome\\' => 24,
+            'rico\\yii2images\\' => 16,
         ),
         'p' => 
         array (
@@ -145,6 +146,10 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
         'rmrevin\\yii\\fontawesome\\' => 
         array (
             0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
+        ),
+        'rico\\yii2images\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/costa-rico/yii2-images',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
@@ -290,6 +295,13 @@ class ComposerStaticInit8100ba55a6e446cb4b67b96ae2975bb8
             'cebe\\gravatar\\' => 
             array (
                 0 => __DIR__ . '/..' . '/cebe/yii2-gravatar',
+            ),
+        ),
+        'a' => 
+        array (
+            'abeautifulsite' => 
+            array (
+                0 => __DIR__ . '/..' . '/abeautifulsite/simpleimage/src',
             ),
         ),
         'H' => 

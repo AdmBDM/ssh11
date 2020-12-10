@@ -19,11 +19,20 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '14c6877fb4a15beb89f070fb27978312b2e18d74',
+    'reference' => '7b9588a918473633e3199153adc66462d66c99c2',
     'name' => 'yiisoft/yii2-app-advanced',
   ),
   'versions' => 
   array (
+    'abeautifulsite/simpleimage' => 
+    array (
+      'pretty_version' => '2.7.0',
+      'version' => '2.7.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '54a99d302355d22ee00d9842a8dbe101a52203d8',
+    ),
     'alexeevdv/yii2-sms-ru' => 
     array (
       'pretty_version' => 'dev-master',
@@ -199,6 +208,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'fa0bb946b6d61279f461bcc5a677ac0ed5eab9b3',
+    ),
+    'costa-rico/yii2-images' => 
+    array (
+      'pretty_version' => '1.0.5',
+      'version' => '1.0.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a11313712765521b2cf6a5ffc3193a9d2977ff91',
     ),
     'dmstr/yii2-adminlte-asset' => 
     array (
@@ -744,7 +762,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '14c6877fb4a15beb89f070fb27978312b2e18d74',
+      'reference' => '7b9588a918473633e3199153adc66462d66c99c2',
     ),
     'yiisoft/yii2-bootstrap' => 
     array (

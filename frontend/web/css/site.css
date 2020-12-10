@@ -90,11 +90,17 @@ a.desc:after {
   margin: 0 0 15px 0; }
 
 .vypusk81-index tbody > tr > td:first-child a:nth-child(1), .vypusk81-index tbody > tr > td:first-child a:nth-child(2), .vypusk81-index tbody > tr > td:first-child a:nth-child(3),
+.gallery-index tbody > tr > td:first-child a:nth-child(1),
+.gallery-index tbody > tr > td:first-child a:nth-child(2),
+.gallery-index tbody > tr > td:first-child a:nth-child(3),
 .user-index tbody > tr > td:first-child a:nth-child(1),
 .user-index tbody > tr > td:first-child a:nth-child(2),
 .user-index tbody > tr > td:first-child a:nth-child(3) {
   margin-right: 10px; }
   .vypusk81-index tbody > tr > td:first-child a:nth-child(1) .glyphicon-trash, .vypusk81-index tbody > tr > td:first-child a:nth-child(2) .glyphicon-trash, .vypusk81-index tbody > tr > td:first-child a:nth-child(3) .glyphicon-trash,
+  .gallery-index tbody > tr > td:first-child a:nth-child(1) .glyphicon-trash,
+  .gallery-index tbody > tr > td:first-child a:nth-child(2) .glyphicon-trash,
+  .gallery-index tbody > tr > td:first-child a:nth-child(3) .glyphicon-trash,
   .user-index tbody > tr > td:first-child a:nth-child(1) .glyphicon-trash,
   .user-index tbody > tr > td:first-child a:nth-child(2) .glyphicon-trash,
   .user-index tbody > tr > td:first-child a:nth-child(3) .glyphicon-trash {
@@ -242,6 +248,14 @@ a.desc:after {
   max-width: 50%;
   height: auto; }
 
+.vypusk81-view .memory-photo {
+  max-width: 150px;
+  text-align: center;
+  overflow: hidden; }
+  .vypusk81-view .memory-photo img {
+    width: 100%;
+    object-fit: contain; }
+
 .memory .memory-row {
   display: flex;
   flex-flow: row wrap;
@@ -259,19 +273,19 @@ a.desc:after {
       .memory .memory-row .memory-block .memory-photo img {
         width: 100%;
         object-fit: contain; }
-    .memory .memory-row .memory-block .memory-date {
-      margin-top: 5px;
-      padding: 5px;
-      width: 100%;
-      text-align: center;
-      border: 2px solid darkblue;
-      font-weight: bold;
-      font-style: italic; }
-    .memory .memory-row .memory-block .memory-text {
-      margin-top: 5px;
-      width: 100%;
-      text-align: center;
-      text-wrap: normal; }
+    .memory .memory-row .memory-block .memory-comment {
+      margin-top: 5px; }
+      .memory .memory-row .memory-block .memory-comment .memory-date {
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        border: 2px solid darkblue;
+        font-weight: bold;
+        font-style: italic; }
+      .memory .memory-row .memory-block .memory-comment .memory-text {
+        width: 100%;
+        text-align: center;
+        text-wrap: normal; }
 
 .site-how-login .instruction {
   display: block;
@@ -317,5 +331,16 @@ a.desc:after {
 #bottom-expand {
   height: 100px;
   background: #f00; }
+
+.view-gallery .row {
+  width: 100%;
+  padding: 5px 20px; }
+  .view-gallery .row .carousel-indicator {
+    bottom: -30px; }
+  .view-gallery .row .carousel-inner {
+    margin-left: 50px;
+    margin-right: 50px; }
+  .view-gallery .row .carousel-control {
+    width: 50px; }
 
 /*# sourceMappingURL=site.css.map */

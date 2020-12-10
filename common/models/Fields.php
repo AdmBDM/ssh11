@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 class Fields
 {
 	//определение локальных констант
@@ -9,6 +11,7 @@ class Fields
 	const TAB_SECTION = 'Section';
 	const TAB_VYPUSK81 = 'Vypusk81';
 	const TAB_PROFILES = 'Profiles';
+	const TAB_GALLERY = 'Gallery';
 	const FORM_LOGIN = 'Login';
 	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
@@ -35,6 +38,7 @@ class Fields
 				'phone_number' => 'Мобильный',
 				'admin' => 'Админ',
 				'admin_edit' => 'Редактор',
+				'image' => 'Фото',
 			];
 		}
 
@@ -104,6 +108,8 @@ class Fields
 				'deathday' => 'Дата ухода',
 				'profile_id' => 'Users ID',
                 'death_reason' => 'Причина ухода',
+				'image' => 'Фото',
+				'gallery' => 'Галерея',
             ];
 		}
 
@@ -111,6 +117,15 @@ class Fields
 			return [
 				'id' => 'ID',
 				'vypusk81_id' => 'vypusk81 ID',
+			];
+		}
+
+		if ($objName == self::TAB_GALLERY) {
+			return [
+				'id' => 'ID',
+				'gallery_name' => 'Наименование',
+				'issue81_id' => 'ID владельца',
+				'for_all' => 'Для всех',
 			];
 		}
 
@@ -203,6 +218,8 @@ class Fields
 				[['gender'], 'string', 'max' => 1],
 //				[['id'], 'exist', 'skipOnError' => true, 'targetClass' => Profiles::class, 'targetAttribute' => ['id' => 'vypusk81_id']],
 				[['profile_id'], 'integer'],
+				[['image'], 'file', 'extensions' => 'png, jpg, jpeg'],
+				[['gallery'], 'file', 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 4],
 			];
 		}
 
@@ -213,6 +230,26 @@ class Fields
 				[['id', 'vypusk81_id'], 'integer'],
 				[['vypusk81_id'], 'unique'],
 				[['id'], 'unique'],
+			];
+		}
+
+		if ($objName == self::TAB_GALLERY) {
+			return [
+				[['gallery_name'], 'string'],
+				[['issue81_id'], 'default', 'value' => null],
+				[['issue81_id'], 'integer'],
+				[['for_all'], 'boolean'],
+				[['image'], 'file', 'extensions' => Yii::$app->params['imgExt']],
+				[['gallery'], 'file', 'extensions' => Yii::$app->params['imgExt'], 'maxFiles' => Yii::$app->params['lenGallery']],
+			];
+		}
+
+		if ($objName == self::TAB_USER) {
+			return [
+				['status', 'default', 'value' => User::STATUS_INACTIVE],
+				['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_DELETED]],
+				[['image'], 'file', 'extensions' => Yii::$app->params['imgExt']],
+				[['gallery'], 'file', 'extensions' => Yii::$app->params['imgExt'], 'maxFiles' => Yii::$app->params['lenGallery']],
 			];
 		}
 

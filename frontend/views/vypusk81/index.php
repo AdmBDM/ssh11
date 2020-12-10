@@ -100,6 +100,14 @@ $this->params['breadcrumbs'][] = $this->title;
 					return (!empty($model->deathday) ? 'Уже не с нами' : '');
 				},
 			],
+//			[
+//				'attribute' => 'image',
+//				'value' => function($model) {
+//					$img = $model->getImage();
+//					return "<img src='" . $img->getUrl() . "'>";
+//				},
+//				'format' => 'html',
+//			],
 		],
 	]); ?>
 

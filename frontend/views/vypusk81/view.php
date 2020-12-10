@@ -12,6 +12,13 @@ $this->params['breadcrumbs'][] = ['label' => 'Vypusk81s', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
+
+<?php
+	$mainImg = $model->getImage();
+	$gallery = $model->getImages();
+	$imgPath = Yii::$app->params['imgStore'];
+?>
+
 <div class="vypusk81-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -27,6 +34,8 @@ YiiAsset::register($this);
         ]) ?>
     </p>
 
+<!--	--><?php //$img = $model->getImage(); ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -40,7 +49,29 @@ YiiAsset::register($this);
             'year_for',
             'birthday',
 //            'deathday',
+//			[
+//				'attribute' => 'image',
+//				'value' => "<img src='{$mainImg->getUrl()}'>",
+//				'format' => 'html',
+//			],
+//			[
+//				'attribute' => 'image',
+//				'value' => '<img src="/' . $mainImg->getPath() . '" alt="' . $mainImg->filePath . '">',
+//				'format' => 'html',
+//			],
         ],
     ]) ?>
 
+<!--	--><?//= Html::img($mainImg->getUrl(), ['alt' => $model->first_name]); ?>
+
+<!--	--><?//=
+//		$mainImg->getUrl();
+//		myDebug($mainImg);
+//		myDebug($gallery);
+//	?>
+
+	<div class="memory-photo">
+<!--		<img src="/upload/store/--><?//= $mainImg->filePath ?><!--" alt="test">-->
+		<img src="/<?= $imgPath . $mainImg->filePath ?>" alt="test">
+	</div>
 </div>
