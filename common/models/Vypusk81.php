@@ -72,14 +72,14 @@ class Vypusk81 extends ActiveRecord
 //        return $this->hasOne(Profiles::class, ['vypusk81_id' => 'id']);
 //    }
 
-    /**
-     * {@inheritdoc}
-     * @return Vypusk81Query the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new Vypusk81Query(get_called_class());
-    }
+//    /**
+//     * {@inheritdoc}
+//     * @return Vypusk81Query the active query used by this AR class.
+//     */
+//    public static function find()
+//    {
+//        return new Vypusk81Query(get_called_class());
+//    }
 
 	/**
 	 * @return bool
