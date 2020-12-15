@@ -256,4 +256,22 @@ class Fields
 		// возвращаем, если объект не описан
 		return false;
 	}
+
+	/**
+	 * @param      $objName
+	 * @param null $colName
+	 *
+	 * @return mixed|string
+	 */
+	static public function getColumnName($objName, $colName = null) {
+		if ($objName == self::TAB_GALLERY) {
+			switch ($colName) {
+				case true:
+					$atr = self::getAttributes($objName);
+					return $atr[$colName];
+			}
+		}
+
+		return ' ';
+	}
 }

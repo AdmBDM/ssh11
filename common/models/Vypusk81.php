@@ -86,13 +86,11 @@ class Vypusk81 extends ActiveRecord
 	 */
 	public function upload() {
 		if ($this->validate()) {
-//			$path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
 			$path = Yii::$app->params['imgStore'] . $this->image->baseName . '.' . $this->image->extension;
 			$this->image->saveAs($path);
 //			$this->attachImage($path, true, 'id' . Yii::$app->user->id);
 			$this->attachImage($path, true);
-//			@unlink($path);
-			unlink($path);
+			@unlink($path);
 			return true;
 		} else {
 			return false;
@@ -105,7 +103,6 @@ class Vypusk81 extends ActiveRecord
 	public function uploadGallery(){
 		if($this->validate()){
 			foreach($this->gallery as $file){
-//				$path = 'upload/store/' . $file->baseName . '.' . $file->extension;
 				$path = Yii::$app->params['imgStore'] . $file->baseName . '.' . $file->extension;
 				$file->saveAs($path);
 				$this->attachImage($path);
@@ -131,6 +128,17 @@ class Vypusk81 extends ActiveRecord
 			return $return;
 		}
 		return 'без имени';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFullName() {
+		$return = $this->first_name . ' ';
+		$return .= (empty($this->first_name_current) ? '' : '(' . $this->first_name_current . ')') . ' ';
+		$return .= $this->last_name . ' ';
+		$return .= $this->patronymic;
+		return $return;
 	}
 }
 

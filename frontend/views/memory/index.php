@@ -22,10 +22,10 @@
 				$imgMain = $item->getImage();
 				echo '<div class="memory-block">';
 					echo '<div class="memory-photo">';
-//						echo '<img src="/upload/store/' . $imgMain->filePath . '" alt="test">';
-						echo '<img src="/'. $pathStore . $imgMain->filePath . '" alt="test">';
+//						echo '<img src="/'. $pathStore . $imgMain->filePath . '" alt="test">';
+						echo '<a href="/'. $imgMain->getPath().'" target="_blank">' . '<img src="/'. $pathStore . $imgMain->filePath . '" alt="test">' . '</a>';
 //						echo '<img src="' . $imgMain->getUrl() . '" alt="test">';
-//						echo Html::img($imgMain->getUrl(), ['alt' => '']);
+//						echo Html::img($imgMain->getUrl('x200'), ['alt' => '']);
 					echo '</div>';
 					echo '<div class="memory-comment">';
 						echo '<div class="memory-date">';
