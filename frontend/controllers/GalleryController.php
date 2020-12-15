@@ -155,7 +155,12 @@ class GalleryController extends MyController
 
 		$images = [];
 		foreach ($gallery as $item) {
-			$images[] = Html::img($item->getUrl('x200'), ['alt' => '']);
+//			$images[] = Html::img($item->getUrl('x200'), ['alt' => '']);
+			$images[] = Html::a(
+				Html::img($item->getUrl('x200'), ['alt' => '']),
+				[$item->getUrl()],
+				['data-method' => 'post', 'target' => '_blank']
+			);
 		}
 
 		return $this->render('viewGallery', [
@@ -167,5 +172,26 @@ class GalleryController extends MyController
 				'name' => $model->gallery_name,
 			],
 		]);
+	}
+
+	public function actionViewGalleries() {
+		$dataProvider = new ActiveDataProvider([
+			'query' => Gallery::find()
+						->where('gallery_type = 0'),
+		]);
+
+		return $this->render('viewGalleries', [
+			'dataProvider' => $dataProvider,
+		]);
+
+//		return $this->render('viewGalleries', [
+//			'model' => $model,
+//			'gallery' => $gallery,
+//			'images' => $images,
+//			'option' => [
+//				'owner_fio' => Vypusk81::getFIO($model->issue81_id),
+//				'name' => $model->gallery_name,
+//			],
+//		]);
 	}
 }

@@ -10,16 +10,14 @@
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Галереи';
+$this->title = 'Все наши галереи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+	<div></div>
 
     <?php Pjax::begin(); ?>
 
@@ -28,45 +26,46 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 			[
 				'class' => ActionColumn::class,
-				'template' => '{view} {view-gallery} {update} {delete}',
+//				'template' => '{view} {view-gallery} {update} {delete}',
+				'template' => '{view-gallery}',
 				'header' => 'Действия',
 				'options' => ['style' => 'width: 100px;'],
 				'buttons' => [
-//					'view' => function ($url, $model) {
-					'view' => function ($url) {
-//						if (!Yii::$app->user->identity->admin) {
-//							return '';
-//						}
-						return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-							'title' => 'Просмотреть',
-						]);
-					},
+////					'view' => function ($url, $model) {
+//					'view' => function ($url) {
+////						if (!Yii::$app->user->identity->admin) {
+////							return '';
+////						}
+//						return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+//							'title' => 'Просмотреть',
+//						]);
+//					},
 					'view-gallery' => function ($url) {
 						return Html::a('<span class="glyphicon glyphicon-book"></span>', $url, [
 							'title' => 'Просмотреть галерею',
 						]);
 					},
-					'update' => function ($url, $model) {
-						if (!Yii::$app->user->identity->admin && !Yii::$app->user->identity->admin_edit && Yii::$app->user->id != $model->profile_id) {
-							return '';
-						}
-						return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-							'title' => 'Изменить',
-						]);
-					},
-//					'delete' => function ($url, $model) {
-					'delete' => function ($url) {
-						if (!Yii::$app->user->identity->admin) {
-							return '';
-						}
-						return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-							'title' => 'Удалить',
-							'data' => [
-								'confirm' => 'Вы действительно хотите удалить данные?',
-								'method' => 'post',
-							],
-						]);
-					},
+//					'update' => function ($url, $model) {
+//						if (!Yii::$app->user->identity->admin && !Yii::$app->user->identity->admin_edit && Yii::$app->user->id != $model->profile_id) {
+//							return '';
+//						}
+//						return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+//							'title' => 'Изменить',
+//						]);
+//					},
+////					'delete' => function ($url, $model) {
+//					'delete' => function ($url) {
+//						if (!Yii::$app->user->identity->admin) {
+//							return '';
+//						}
+//						return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+//							'title' => 'Удалить',
+//							'data' => [
+//								'confirm' => 'Вы действительно хотите удалить данные?',
+//								'method' => 'post',
+//							],
+//						]);
+//					},
 				],
 			],
 
@@ -91,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 
 //			'issue81_id',
-			'for_all:boolean',
+//			'for_all:boolean',
 
 			[
 				'label' => '',
