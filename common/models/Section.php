@@ -38,6 +38,7 @@ class Section extends ActiveRecord
 	const MENU_RIGHT = 'menu_right';
 	const MENU_FOOTER = 'menu_footer';
 	const GR_ADMIN = 'admin';
+	const GR_DEBUG = 'debug';
 	const GR_COMMON = 'common';
 	const GR_USER = 'user';
 	const GR_ALERT = 'alert';
@@ -113,6 +114,7 @@ class Section extends ActiveRecord
 
 		$group_label = '---';
 		if ($group === self::GR_ADMIN) { $group_label = 'Управление'; }
+		if ($group === self::GR_DEBUG) { $group_label = 'Отладка'; }
 		if ($group === self::GR_COMMON) { $group_label = 'Общее'; }
 		if ($group === self::GR_USER) { $group_label = 'Личное'; }
 		if ($group === self::GR_ALERT) { $group_label = 'Важно'; }
@@ -148,6 +150,7 @@ class Section extends ActiveRecord
 				'visible' => ($group === self::GR_ADMIN ? Yii::$app->user->identity->admin : true),
 			];
 		}
+
 		return $menuItems;
 	}
 }

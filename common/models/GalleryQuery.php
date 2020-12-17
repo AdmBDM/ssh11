@@ -2,12 +2,14 @@
 
 namespace common\models;
 
+use yii\db\ActiveQuery;
+
 /**
  * This is the ActiveQuery class for [[Gallery]].
  *
  * @see Gallery
  */
-class GalleryQuery extends \yii\db\ActiveQuery
+class GalleryQuery extends ActiveQuery
 {
     /*public function active()
     {
