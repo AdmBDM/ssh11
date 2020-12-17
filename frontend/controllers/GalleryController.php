@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Vypusk81;
 use Yii;
 use common\models\Gallery;
+use common\models\GallerySearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
@@ -40,12 +41,18 @@ class GalleryController extends MyController
      */
     public function actionIndex()
     {
+		unset($_SESSION['gallery']);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Gallery::find(),
+            'query' => Gallery::find()->where('not gallery_deleted'),
         ]);
 
+		$searchModel = new GallerySearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -72,6 +79,7 @@ class GalleryController extends MyController
         $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			Yii::$app->session->setFlash('success', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -89,6 +97,14 @@ class GalleryController extends MyController
      */
     public function actionUpdate($id)
     {
+		$_SESSION['gallery'] = [
+			'id' => Vypusk81::getOwnerId(Yii::$app->user->id),
+			'type'=> Gallery::GALLERY_ANIMAL,
+			'title'=> 'домашних питомцев',
+			'fio'=> Vypusk81::getFIO(Vypusk81::getOwnerId(Yii::$app->user->id)),
+			'view_fio'=> false,
+		];
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -174,24 +190,45 @@ class GalleryController extends MyController
 		]);
 	}
 
-	public function actionViewGalleries() {
+	/**
+	 * @return string
+	 */
+	public function actionAnimals()
+	{
+		$_SESSION['gallery'] = [
+			'id' => Vypusk81::getOwnerId(Yii::$app->user->id),
+			'type'=> Gallery::GALLERY_ANIMAL,
+			'title'=> 'домашних питомцев',
+			'fio'=> Vypusk81::getFIO(Vypusk81::getOwnerId(Yii::$app->user->id)),
+			'view_fio'=> false,
+		];
 		$dataProvider = new ActiveDataProvider([
-			'query' => Gallery::find()
-						->where('gallery_type = 0'),
+			'query' => Gallery::find()->where('not gallery_deleted and issue81_id = ' . $_SESSION['gallery']['id'] . ' and gallery_type = ' . $_SESSION['gallery']['type']),
 		]);
 
-		return $this->render('viewGalleries', [
+		return $this->render('index', [
 			'dataProvider' => $dataProvider,
 		]);
+	}
 
-//		return $this->render('viewGalleries', [
-//			'model' => $model,
-//			'gallery' => $gallery,
-//			'images' => $images,
-//			'option' => [
-//				'owner_fio' => Vypusk81::getFIO($model->issue81_id),
-//				'name' => $model->gallery_name,
-//			],
-//		]);
+	/**
+	 * @return string
+	 */
+	public function actionFamily()
+	{
+		$_SESSION['gallery'] = [
+			'id' => Vypusk81::getOwnerId(Yii::$app->user->id),
+			'type'=> Gallery::GALLERY_USER,
+			'title'=> 'домашних и ...',
+			'fio'=> Vypusk81::getFIO(Vypusk81::getOwnerId(Yii::$app->user->id)),
+			'view_fio'=> false,
+		];
+		$dataProvider = new ActiveDataProvider([
+			'query' => Gallery::find()->where('not gallery_deleted and issue81_id = ' . $_SESSION['gallery']['id'] . ' and gallery_type = ' . $_SESSION['gallery']['type']),
+		]);
+
+		return $this->render('index', [
+			'dataProvider' => $dataProvider,
+		]);
 	}
 }

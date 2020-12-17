@@ -1,7 +1,8 @@
 <?php
 
 	use common\models\Fields;
-	use common\models\Gallery;
+	use common\models\Image;
+	use common\models\Vypusk81;
 	use yii\grid\ActionColumn;
 	use yii\helpers\Html;
 	use yii\grid\GridView;
@@ -17,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+<!--    <h2>--><?//= Gallery::getHowImages(); ?><!--</h2>-->
+
 	<div></div>
 
     <?php Pjax::begin(); ?>
@@ -27,19 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'class' => ActionColumn::class,
 //				'template' => '{view} {view-gallery} {update} {delete}',
-				'template' => '{view-gallery}',
+				'template' => '{view} {view-gallery}',
+//				'template' => '{view-gallery}',
 				'header' => 'Действия',
 				'options' => ['style' => 'width: 100px;'],
 				'buttons' => [
-////					'view' => function ($url, $model) {
-//					'view' => function ($url) {
-////						if (!Yii::$app->user->identity->admin) {
-////							return '';
-////						}
-//						return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-//							'title' => 'Просмотреть',
-//						]);
-//					},
+//					'view' => function ($url, $model) {
+					'view' => function ($url) {
+						if (!Yii::$app->user->identity->admin) {
+							return '';
+						}
+						return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+							'title' => 'Просмотреть',
+						]);
+					},
 					'view-gallery' => function ($url) {
 						return Html::a('<span class="glyphicon glyphicon-book"></span>', $url, [
 							'title' => 'Просмотреть галерею',
@@ -80,17 +84,22 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 
 			[
-				'label' => 'Ф И О',
+				'label' => 'Кол-во фото',
+				'options' => ['style' => 'width: 75px;'],
+				'value' => function($model) {
+					return Image::getCountImages(Image::MODEL_GALLERY, $model->id);
+				},
+			],
+
+			[
+				'label' => 'Автор',
 				'options' => ['style' => 'width: 350px;'],
 				'format' => 'text',
 				'contentOptions' => ['style'=>'white-space: normal;'],
 				'value' => function($model) {
-					return Gallery::getOwner($model->issue81_id);
+					return Vypusk81::getFIO($model->issue81_id, Vypusk81::NAME_FAM);
 				},
 			],
-
-//			'issue81_id',
-//			'for_all:boolean',
 
 			[
 				'label' => '',

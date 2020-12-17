@@ -9,6 +9,8 @@ $this->title = 'Редактировать галерею: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Galleries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактировать';
+$_SESSION['gallery']['mode'] = 'edit';
+$_SESSION['gallery']['type'] = $model->gallery_type;
 ?>
 <div class="gallery-update">
 

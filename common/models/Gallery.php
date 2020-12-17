@@ -22,6 +22,9 @@ class Gallery extends ActiveRecord
 	public $image;
 	public $gallery;
 
+	public $how_images;
+	public $fio;
+
 	/**
 	 * @return string[][]
 	 */
@@ -67,10 +70,6 @@ class Gallery extends ActiveRecord
         return new GalleryQuery(get_called_class());
     }
 
-	public static function getOwner($id = 0) {
-		return Vypusk81::getFIO($id);
-	}
-
 	/**
 	 * @return bool
 	 */
@@ -106,5 +105,4 @@ class Gallery extends ActiveRecord
 			return false;
 		}
 	}
-
 }

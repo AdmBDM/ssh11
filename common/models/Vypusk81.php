@@ -23,6 +23,11 @@ use yii\db\ActiveRecord;
  */
 class Vypusk81 extends ActiveRecord
 {
+	const FULL_NAME = 1;	// полное имя - фамилия + имя + отчество
+	const FIO = 2;			// фамилия + инициалы
+	const FAM_NAME = 3;		// фамилия + имя
+	const NAME_FAM = 4;		// имя + фамилия
+
 	public $image;
 	public $gallery;
 
@@ -115,30 +120,49 @@ class Vypusk81 extends ActiveRecord
 	}
 
 	/**
-	 * @param $id
+	 * @param     $id
+	 * @param int $typeFIO
 	 *
 	 * @return string
 	 */
-	public static function getFIO($id) {
+	public static function getFIO($id, $typeFIO = self::FULL_NAME) {
 		if (($model = Vypusk81::findOne($id)) !== null) {
-			$return = $model->first_name . ' ';
-			$return .= (empty($model->first_name_current) ? '' : '(' . $model->first_name_current . ')') . ' ';
-			$return .= $model->last_name . ' ';
-			$return .= $model->patronymic;
-			return $return;
+			$f = $model->first_name . ' ' . (empty($model->first_name_current) ? '' : '(' . $model->first_name_current . ')');
+			$i = $model->last_name;
+			$o = $model->patronymic;
+
+			switch ($typeFIO) {
+				case self::FULL_NAME: return $f . ' ' . $i . ' ' . $o;
+				case self::FIO: return $f . ' ' . mb_substr($i, 0, 1) . '.' . mb_substr($o, 0, 1) . '.';
+				case self::FAM_NAME: return $f . ' ' . $i;
+				case self::NAME_FAM: return $i . ' ' . $f;
+			}
 		}
 		return 'без имени';
 	}
 
 	/**
-	 * @return string
+	 * @param $id
+	 *
+	 * @return false|mixed|null
 	 */
-	public function getFullName() {
-		$return = $this->first_name . ' ';
-		$return .= (empty($this->first_name_current) ? '' : '(' . $this->first_name_current . ')') . ' ';
-		$return .= $this->last_name . ' ';
-		$return .= $this->patronymic;
-		return $return;
+	public static function getProfileId ($id) {
+		if (($model = Vypusk81::findOne($id)) !== null) {
+			return $model->profile_id;
+		}
+		return false;
+	}
+
+	/**
+	 * @param $id
+	 *
+	 * @return false|mixed|null
+	 */
+	public static function getOwnerId ($id) {
+		if (($model = Vypusk81::find()->where('profile_id = ' . $id)->one()) !== null) {
+			return $model->id;
+		}
+		return false;
 	}
 }
 

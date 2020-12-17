@@ -12,6 +12,7 @@ class Fields
 	const TAB_VYPUSK81 = 'Vypusk81';
 	const TAB_PROFILES = 'Profiles';
 	const TAB_GALLERY = 'Gallery';
+	const TAB_IMAGE = 'Image';
 	const FORM_LOGIN = 'Login';
 	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
@@ -126,6 +127,22 @@ class Fields
 				'gallery_name' => 'Наименование',
 				'issue81_id' => 'ID владельца',
 				'for_all' => 'Для всех',
+				'gallery_type' => 'Тип галереи',
+				'gallery_deleted' => 'Удалена',
+				'how_images' => 'Кол-во фото',
+				'fio' => 'Ф И О',
+			];
+		}
+
+		if ($objName == self::TAB_IMAGE) {
+			return [
+				'id' => 'ID',
+				'filePath' => 'Путь к файлу',
+				'itemId' => 'ID объекта',
+				'isMain' => 'Главный',
+				'modelName' => 'Модель',
+				'urlAlias' => 'URL',
+				'name' => 'Имя файла',
 			];
 		}
 
@@ -241,6 +258,11 @@ class Fields
 				[['for_all'], 'boolean'],
 				[['image'], 'file', 'extensions' => Yii::$app->params['imgExt']],
 				[['gallery'], 'file', 'extensions' => Yii::$app->params['imgExt'], 'maxFiles' => Yii::$app->params['lenGallery']],
+				[['gallery_type'], 'integer'],
+				[['gallery_deleted'], 'boolean'],
+				[['how_images'], 'integer'],
+				[['fio'], 'string'],
+				[['how_images', 'fio'], 'safe'],
 			];
 		}
 

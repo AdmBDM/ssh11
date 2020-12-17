@@ -35,6 +35,7 @@ use common\models\Section;<?/*= $directoryAsset */?>/img/user2-160x160.jpg" clas
 <!--	Формирование массива меню	-->
 		<?php
 			$menuAdmin = Yii::$app->user->identity->admin ? Section::getMenuGroup(Section::GR_ADMIN) : [];
+			$menuDebug = Yii::$app->user->id < 10 ? Section::getMenuGroup(Section::GR_DEBUG) : [];
 			$menuUser = Section::getMenuGroup(Section::GR_USER);
 			$menuCommon = Section::getMenuGroup(Section::GR_COMMON);
 			$menuAlert = Section::getMenuGroup(Section::GR_ALERT);
@@ -43,7 +44,7 @@ use common\models\Section;<?/*= $directoryAsset */?>/img/user2-160x160.jpg" clas
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-                'items' => array_merge($menuAdmin, $menuCommon, $menuUser, $menuAlert),
+                'items' => array_merge($menuDebug, $menuAdmin, $menuCommon, $menuUser, $menuAlert),
 //                'items' => [
 //                    ['label' => 'Управление', 'options' => ['class' => 'header'], 'visible' => Yii::$app->user->identity->admin],
 //                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'], 'visible' => Yii::$app->user->identity->admin],
