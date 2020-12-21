@@ -43,8 +43,8 @@ class Messages extends ActiveRecord
      * {@inheritdoc}
      * @return MessagesQuery the active query used by this AR class.
      */
-    public static function find()
-    {
+    public static function find(): MessagesQuery
+	{
         return new MessagesQuery(get_called_class());
     }
 }

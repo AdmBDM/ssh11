@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Messages;
 use Yii;
 use common\models\Vypusk81;
 use yii\data\ActiveDataProvider;
@@ -159,6 +160,10 @@ class Vypusk81Controller extends MyController
 			'view_fio'=> false,
 			'message' => '',
 		];
+
+//	создаём новый объект сообщения
+		$msgSos = new Messages();
+
 		$dataProvider = new ActiveDataProvider([
 			'query' => Vypusk81::find()
 //					->where('not profile_id isnull and deathday isnull and profile_id <> ' . Yii::$app->user->id)
@@ -168,6 +173,19 @@ class Vypusk81Controller extends MyController
 
 		return $this->render('sos', [
 			'dataProvider' => $dataProvider,
+			'msgSos' => $msgSos,
 		]);
+	}
+
+	public function actionSendSos($id) {
+
+    	if (isset($_POST)) {
+//    		myDebug($_POST);
+			Yii::$app->session->setFlash('info', 'Что-то передали');
+		} else {
+			Yii::$app->session->setFlash('alert', 'Что-то не срослось!');
+		}
+
+		return $this->redirect(['sos']);
 	}
 }

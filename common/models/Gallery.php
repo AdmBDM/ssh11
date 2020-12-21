@@ -12,6 +12,9 @@ use yii\db\ActiveRecord;
  * @property string|null $gallery_name
  * @property int $issue81_id
  * @property bool|null $for_all
+ * @property int $gallery_type
+ * @property bool $gallery_deleted
+ * @property int $create_at
  */
 class Gallery extends ActiveRecord
 {
