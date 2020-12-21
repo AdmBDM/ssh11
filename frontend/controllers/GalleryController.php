@@ -97,17 +97,19 @@ class GalleryController extends MyController
      */
     public function actionUpdate($id)
     {
-		$_SESSION['gallery'] = [
-			'id' => Vypusk81::getOwnerId(Yii::$app->user->id),
-			'type'=> Gallery::GALLERY_ANIMAL,
-			'title'=> 'домашних питомцев',
-			'fio'=> Vypusk81::getFIO(Vypusk81::getOwnerId(Yii::$app->user->id)),
-			'view_fio'=> false,
-		];
-
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+		if ($model->issue81_id) {
+			$_SESSION['gallery'] = [
+				'id' => $model->issue81_id,
+				'type' => $model->gallery_type,
+				'title' => $model->gallery_type == 1 ? 'домашних питомцев' : 'домашних и ...',
+				'fio' => Vypusk81::getFIO($model->issue81_id),
+				'view_fio' => false,
+			];
+		}
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
 // сохранение картинки
 			$model->image = UploadedFile::getInstance($model, 'image');

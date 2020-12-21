@@ -13,6 +13,7 @@ class Fields
 	const TAB_PROFILES = 'Profiles';
 	const TAB_GALLERY = 'Gallery';
 	const TAB_IMAGE = 'Image';
+	const TAB_MESSAGES = 'Messages';
 	const FORM_LOGIN = 'Login';
 	const FORM_SIGNUP = 'Signup';
 	const FORM_RESET_PASS_E = 'Reset_Pass_email';
@@ -146,6 +147,16 @@ class Fields
 			];
 		}
 
+		if ($objName == self::TAB_MESSAGES) {
+			return [
+				'id' => 'ID',
+				'issue81_id' => 'ID отправителя',
+				'send_text' => 'Текст сообщения',
+				'to_whom' => 'ID адресатов',
+				'date_send' => 'Дата',
+			];
+		}
+
 		// возвращаем, если объект не описан
 		return false;
 	}
@@ -272,6 +283,17 @@ class Fields
 				['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_DELETED]],
 				[['image'], 'file', 'extensions' => Yii::$app->params['imgExt']],
 				[['gallery'], 'file', 'extensions' => Yii::$app->params['imgExt'], 'maxFiles' => Yii::$app->params['lenGallery']],
+			];
+		}
+
+		if ($objName == self::TAB_MESSAGES) {
+			return [
+				[['issue81_id'], 'required'],
+				[['issue81_id'], 'default', 'value' => null],
+				[['issue81_id'], 'integer'],
+				[['to_whom'], 'string'],
+				[['date_send'], 'safe'],
+				[['send_text'], 'string', 'max' => 1000],
 			];
 		}
 

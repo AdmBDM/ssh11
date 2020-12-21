@@ -45,3 +45,4 @@ phpunit.phar
 /frontend/web/css/sass/.sass-cache/
 /frontend/web/images/
 /frontend/web/upload/
+/common/images/
