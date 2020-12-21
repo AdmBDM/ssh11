@@ -36,6 +36,8 @@ class Vypusk81Controller extends MyController
      */
     public function actionIndex()
     {
+    	unset($_SESSION['mayDay']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => Vypusk81::find()->orderBy(['first_name' => SORT_ASC, 'last_name' => SORT_ASC, 'patronymic' => SORT_ASC]),
         ]);
@@ -146,4 +148,26 @@ class Vypusk81Controller extends MyController
 //        throw new NotFoundHttpException('The requested page does not exist.');
         throw new NotFoundHttpException('Запрашиваемая страница не существует.');
     }
+
+	/**
+	 * @return string
+	 */
+    public function actionSos()
+	{
+		$_SESSION['sos'] = [
+			'title' => 'Помощь друга',
+			'view_fio'=> false,
+			'message' => '',
+		];
+		$dataProvider = new ActiveDataProvider([
+			'query' => Vypusk81::find()
+//					->where('not profile_id isnull and deathday isnull and profile_id <> ' . Yii::$app->user->id)
+					->where('not profile_id isnull and deathday isnull')
+					->orderBy(['first_name' => SORT_ASC, 'last_name' => SORT_ASC, 'patronymic' => SORT_ASC]),
+		]);
+
+		return $this->render('sos', [
+			'dataProvider' => $dataProvider,
+		]);
+	}
 }

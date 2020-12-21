@@ -142,6 +142,26 @@ class Vypusk81 extends ActiveRecord
 	}
 
 	/**
+	 * @param     $id
+	 * @param int $typeFIO
+	 *
+	 * @return string
+	 */
+	public function getFIOloc($typeFIO = self::FULL_NAME) {
+		$f = $this->first_name . ' ' . (empty($this->first_name_current) ? '' : '(' . $this->first_name_current . ')');
+		$i = $this->last_name;
+		$o = $this->patronymic;
+
+		switch ($typeFIO) {
+			case self::FULL_NAME: return $f . ' ' . $i . ' ' . $o;
+			case self::FIO: return $f . ' ' . mb_substr($i, 0, 1) . '.' . mb_substr($o, 0, 1) . '.';
+			case self::FAM_NAME: return $f . ' ' . $i;
+			case self::NAME_FAM: return $i . ' ' . $f;
+			default: return 'без имени';
+		}
+	}
+
+	/**
 	 * @param $id
 	 *
 	 * @return false|mixed|null
