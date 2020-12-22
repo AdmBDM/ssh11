@@ -41,7 +41,7 @@ $imgPath = Yii::$app->params['imgStore'];
             'issue81_id',
             'for_all:boolean',
 			[
-				'label' => 'test',
+//				'label' => 'test',
 				'value' => Html::img($imgMain->getUrl('x200'), ['alt' => '']),
 				'format' => 'html'
 			],

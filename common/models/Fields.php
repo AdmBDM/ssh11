@@ -144,6 +144,7 @@ class Fields
 				'modelName' => 'Модель',
 				'urlAlias' => 'URL',
 				'name' => 'Имя файла',
+				'note' => 'Описание',
 			];
 		}
 

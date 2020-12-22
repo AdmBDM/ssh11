@@ -81,8 +81,24 @@ class GalleryController extends MyController
         $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->session->setFlash('success', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
-            return $this->redirect(['view', 'id' => $model->id]);
+            if (isset($_SESSION['gallery'])) {
+				Yii::$app->session->setFlash('success', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
+				switch ($_SESSION['gallery']['type']) {
+					case Gallery::GALLERY_ANIMAL:
+						$url = 'animals';
+						break;
+
+					case Gallery::GALLERY_USER:
+						$url = 'family';
+						break;
+
+					default: $url = 'index';
+				}
+				return $this->redirect([$url]);
+			} else {
+				Yii::$app->session->setFlash('error', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
         }
 
         return $this->render('create', [
@@ -129,7 +145,7 @@ class GalleryController extends MyController
 			}
 
 			Yii::$app->session->setFlash('success', 'Информация обновлена.');
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect([($model->gallery_type == 1 ? 'animals' : 'family')]);
         }
 
         return $this->render('update', [
