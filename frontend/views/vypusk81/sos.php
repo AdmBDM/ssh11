@@ -12,20 +12,21 @@
 	$this->title = $_SESSION['sos']['title'];
 	$this->params['breadcrumbs'][] = $this->title;
 
+//	$msgSos->send_text = 'Test';
 ?>
 <div class="sos-index">
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-<!--	<div class="row">-->
-<!--		<div class="col-lg-5">-->
-<!--			--><?php //$form = ActiveForm::begin(); ?>
-<!--				--><?//= $form->field($model, 'textArea')
-//						->textarea(['rows' => 2, 'cols' => 5])
-//						->label('Многострочное текстовое поле'); ?>
-<!--			--><?php //ActiveForm::end(); ?>
-<!--		</div>-->
-<!--	</div>-->
+	<div class="row">
+		<div class="col-lg-5">
+			<?php $form = ActiveForm::begin(); ?>
+				<?= $form->field($msgSos, 'send_text')->label(false)
+						->textarea(['rows' => 2, 'cols' => 5, 'placeholder' => 'Текст, который вы хотите отправить.'])
+				; ?>
+			<?php ActiveForm::end(); ?>
+		</div>
+	</div>
 
 	<?php Pjax::begin(); ?>
 
@@ -38,9 +39,14 @@
 				'header' => '',
 				'options' => ['style' => 'width: 50px;'],
 				'buttons' => [
-					'send-sos' => function ($url, $model) {
+					'send-sos' => function ($url, $msgSos) {
 						return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', $url, [
 							'title' => 'Отравить запрос',
+//							'data' => [
+//								'msgSos' => $msgSos,
+//								'confirm' => 'Вы действительно хотите удалить данные?',
+//								'method' => 'post',
+//							],
 						]);
 					},
 				],
@@ -62,23 +68,6 @@
 				'options' => ['style' => 'width: 150px;'],
 			],
 
-//			[
-//				'attribute' => 'birthday',
-//				'enableSorting' => false,
-//				'options' => ['style' => 'width: 150px;'],
-//			],
-
-//			[
-//				'label' => 'Годы учёбы',
-//				'options' => ['style' => 'width: 150px;'],
-//				'format' => 'text',
-//				'value' => function($model) {
-//					$return = (empty($model->year_from) ? '...' : $model->year_from) . '  -  ';
-//					$return .= (empty($model->year_for) ? '...' : $model->year_for);
-//					return $return;
-//				},
-//			],
-
 			[
 				'label' => '',
 				'format' => 'text',
@@ -87,14 +76,7 @@
 					return (!empty($model->deathday) ? 'Уже не с нами' : '');
 				},
 			],
-//			[
-//				'attribute' => 'image',
-//				'value' => function($model) {
-//					$img = $model->getImage();
-//					return "<img src='" . $img->getUrl() . "'>";
-//				},
-//				'format' => 'html',
-//			],
+
 		],
 	]); ?>
 

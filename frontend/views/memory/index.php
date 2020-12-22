@@ -21,6 +21,10 @@
 			foreach ($memory as $item) {
 				$imgMain = $item->getImage();
 				echo '<div class="memory-block">';
+					echo '<div class="memory-fio">';
+					echo $item->first_name . '<br />';
+					echo $item->last_name;
+					echo '</div>';
 					echo '<div class="memory-photo">';
 //						echo '<img src="/'. $pathStore . $imgMain->filePath . '" alt="test">';
 						echo '<a href="/'. $imgMain->getPath().'" target="_blank">' . '<img src="/'. $pathStore . $imgMain->filePath . '" alt="test">' . '</a>';

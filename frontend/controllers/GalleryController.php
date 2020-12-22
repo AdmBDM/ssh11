@@ -20,8 +20,8 @@ class GalleryController extends MyController
 	/**
 	 * @return array
 	 */
-    public function behaviors()
-    {
+    public function behaviors(): array
+	{
         return [
             'verbs' => [
                 'class' => VerbFilter::class,
@@ -43,9 +43,9 @@ class GalleryController extends MyController
     {
 		unset($_SESSION['gallery']);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => Gallery::find()->where('not gallery_deleted'),
-        ]);
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => Gallery::find()->where('not gallery_deleted'),
+//        ]);
 
 		$searchModel = new GallerySearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -56,13 +56,15 @@ class GalleryController extends MyController
         ]);
     }
 
-    /**
-     * Displays a single Gallery model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
+	/**
+	 * Displays a single Gallery model.
+	 *
+	 * @param integer $id
+	 *
+	 * @return mixed
+	 * @throws NotFoundHttpException if the model cannot be found
+	 */
+    public function actionView(int $id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -79,8 +81,24 @@ class GalleryController extends MyController
         $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->session->setFlash('success', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
-            return $this->redirect(['view', 'id' => $model->id]);
+            if (isset($_SESSION['gallery'])) {
+				Yii::$app->session->setFlash('success', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
+				switch ($_SESSION['gallery']['type']) {
+					case Gallery::GALLERY_ANIMAL:
+						$url = 'animals';
+						break;
+
+					case Gallery::GALLERY_USER:
+						$url = 'family';
+						break;
+
+					default: $url = 'index';
+				}
+				return $this->redirect([$url]);
+			} else {
+				Yii::$app->session->setFlash('error', 'Галерея создана. Можно её наполнять содержимым в режиме редактирования.');
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
         }
 
         return $this->render('create', [
@@ -88,14 +106,16 @@ class GalleryController extends MyController
         ]);
     }
 
-    /**
-     * Updates an existing Gallery model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
+	/**
+	 * Updates an existing Gallery model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 *
+	 * @param integer $id
+	 *
+	 * @return mixed
+	 * @throws NotFoundHttpException if the model cannot be found
+	 */
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -125,7 +145,7 @@ class GalleryController extends MyController
 			}
 
 			Yii::$app->session->setFlash('success', 'Информация обновлена.');
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect([($model->gallery_type == 1 ? 'animals' : 'family')]);
         }
 
         return $this->render('update', [
@@ -133,14 +153,16 @@ class GalleryController extends MyController
         ]);
     }
 
-    /**
-     * Deletes an existing Gallery model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
+	/**
+	 * Deletes an existing Gallery model.
+	 * If deletion is successful, the browser will be redirected to the 'index' page.
+	 *
+	 * @param integer $id
+	 *
+	 * @return mixed
+	 * @throws NotFoundHttpException if the model cannot be found
+	 */
+    public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
 
