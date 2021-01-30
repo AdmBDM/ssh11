@@ -1,7 +1,7 @@
 <?php
 
 	use common\models\Vypusk81;
-	use yii\bootstrap\ActiveForm;
+//	use yii\bootstrap\ActiveForm;
 	use yii\grid\ActionColumn;
 	use yii\helpers\Html;
 	use yii\grid\GridView;
@@ -18,17 +18,13 @@
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<div class="row">
-		<div class="col-lg-5">
-			<?php $form = ActiveForm::begin(); ?>
-				<?= $form->field($msgSos, 'send_text')->label(false)
-						->textarea(['rows' => 2, 'cols' => 5, 'placeholder' => 'Текст, который вы хотите отправить.'])
-				; ?>
-			<?php ActiveForm::end(); ?>
-		</div>
-	</div>
+<!--	--><?php //$msgSos->send_text = '????'; ?>
+
+<!--	--><?// myDebug($msgSos) ?>
+<!--	--><?// myDebug($dataProvider) ?>
 
 	<?php Pjax::begin(); ?>
+	<?php  echo $this->render('_text', ['msgSos' => $msgSos]); ?>
 
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
@@ -39,14 +35,16 @@
 				'header' => '',
 				'options' => ['style' => 'width: 50px;'],
 				'buttons' => [
-					'send-sos' => function ($url, $msgSos) {
+					'send-sos' => function ($url) use ($msgSos) {
 						return Html::a('<span class="glyphicon glyphicon-bullhorn"></span>', $url, [
 							'title' => 'Отравить запрос',
+//							'data' => $msgSos,
 //							'data' => [
 //								'msgSos' => $msgSos,
 //								'confirm' => 'Вы действительно хотите удалить данные?',
 //								'method' => 'post',
 //							],
+							'data-pjax' => '0',
 						]);
 					},
 				],
@@ -62,11 +60,11 @@
 				},
 			],
 
-			[
-				'attribute' => 'birthday',
-				'enableSorting' => false,
-				'options' => ['style' => 'width: 150px;'],
-			],
+//			[
+//				'attribute' => 'birthday',
+//				'enableSorting' => false,
+//				'options' => ['style' => 'width: 150px;'],
+//			],
 
 			[
 				'label' => '',

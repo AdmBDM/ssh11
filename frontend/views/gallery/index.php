@@ -76,6 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					},
 //					'delete' => function ($url, $model) {
 					'delete' => function ($url) {
+// todo-my: мои доработки: открыть удаление галереи для владельца
 						if (!Yii::$app->user->identity->admin) {
 							return '';
 						}

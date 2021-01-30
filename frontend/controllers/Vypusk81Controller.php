@@ -37,7 +37,7 @@ class Vypusk81Controller extends MyController
      */
     public function actionIndex()
     {
-    	unset($_SESSION['mayDay']);
+    	unset($_SESSION['sos']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => Vypusk81::find()->orderBy(['first_name' => SORT_ASC, 'last_name' => SORT_ASC, 'patronymic' => SORT_ASC]),
@@ -180,7 +180,6 @@ class Vypusk81Controller extends MyController
 	public function actionSendSos($id) {
 
     	if (isset($_POST)) {
-//    		myDebug($_POST);
 			Yii::$app->session->setFlash('info', 'Что-то передали');
 		} else {
 			Yii::$app->session->setFlash('alert', 'Что-то не срослось!');

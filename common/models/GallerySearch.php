@@ -4,7 +4,6 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-//use common\models\Gallery;
 
 /**
  * GallerySearch represents the model behind the search form of `common\models\Gallery`.
@@ -17,16 +16,11 @@ class GallerySearch extends Gallery
     public function rules()
     {
     	return Fields::getRules(Fields::TAB_GALLERY);
-//        return [
-//            [['id', 'issue81_id', 'gallery_type'], 'integer'],
-//            [['gallery_name'], 'safe'],
-//            [['for_all', 'gallery_deleted'], 'boolean'],
-//        ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+	/**
+	 * @return array|array[]
+	 */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
